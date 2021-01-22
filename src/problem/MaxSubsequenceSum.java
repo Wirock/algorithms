@@ -28,7 +28,7 @@ public class MaxSubsequenceSum {
 				maxSum = thisSum;
 				seqStart = i;
 				seqEnd = j;
-			}//╨мвН╢С╣двспРап╡╩╩Арт╨мн╙╦╨╣двспРап©╙м╥
+			}//Е▓▄Ф°─Е╓╖Г └Е╜░Е╨▐Е┬≈Д╦█Д╪ Д╩╔Е▓▄Д╦╨Х╢÷Г └Е╜░Е╨▐Е┬≈Е╪─Е╓╢
 			else if(thisSum<0){
 				i = j + 1;
 				thisSum = 0;
@@ -37,7 +37,7 @@ public class MaxSubsequenceSum {
 		return maxSum;
 	}
 	
-//╥жжн╥╗ё╛O(NlogN)
+//Е┬├Ф╡╩ФЁ∙О╪▄O(NlogN)
 	public static int DevidedMaxSubsequenceSum(int[] a,int left,int right){
 		int maxLeftBorderSum = 0,maxRightBorderSum = 0;
 		int leftBorderSum = 0,rightBorderSum = 0;
@@ -85,7 +85,7 @@ public class MaxSubsequenceSum {
 		//int maxSum=maxSubsequenceSum(a);
 		int maxSum=AdvanceMaxSubsequenceSum(a);
 //		int maxSum = DevidedMaxSubsequenceSum(a,0,a.length-1);
-		System.out.println("╨мвН╢С╣двспРапфПй╪вЬ╠Йн╙ё╨"+seqStart+",жуж╧вЬ╠Йн╙ё╨"+seqEnd+",╨мн╙ё╨"+maxSum);
+		System.out.println("Е▓▄Ф°─Е╓╖Г └Е╜░Е╨▐Е┬≈Х╣╥Е╖▀Е²░Ф═┤Д╦╨О╪ "+seqStart+",Г╩┬Ф╜╒Е²░Ф═┤Д╦╨О╪ "+seqEnd+",Е▓▄Д╦╨О╪ "+maxSum);
 	}
 
 }

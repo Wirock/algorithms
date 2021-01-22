@@ -1,27 +1,27 @@
 package sorting.distribution;
 
 public class CountSort {
-//ÊäÈëÊı×éÔªËØÖ»ÄÜÊÇ0µ½kÖ®¼äµÄÕûÊı
+//è¾“å…¥æ•°ç»„å…ƒç´ åªèƒ½æ˜¯0åˆ°kä¹‹é—´çš„æ•´æ•°
 	public static void countSort(int[] array,int k){
 		
 		int[] temp = new int[array.length];
 		for(int i=0;i<array.length;i++){
 			temp[i] = array[i];
 		}
-		//Í³¼ÆĞ¡ÓÚ»òµÈÓÚindexµÄÊıµÄ¸öÊı
-		//leCount[i]ÎªarrayÖĞĞ¡ÓÚµÈÓÚiµÄÕûÊıµÄ¸öÊı
+		//ç»Ÿè®¡å°äºæˆ–ç­‰äºindexçš„æ•°çš„ä¸ªæ•°
+		//leCount[i]ä¸ºarrayä¸­å°äºç­‰äºiçš„æ•´æ•°çš„ä¸ªæ•°
 		int[] leCount = new int[k+1];
-		//Í³¼ÆµÈÓÚµÄÊıµÄ¸öÊı
+		//ç»Ÿè®¡ç­‰äºçš„æ•°çš„ä¸ªæ•°
 		for(int i=0;i<array.length;i++){
 			leCount[temp[i]]++;
 		}
-		//Í³¼ÆĞ¡ÓÚµÈÓÚµÄÊıµÄ¸öÊı
+		//ç»Ÿè®¡å°äºç­‰äºçš„æ•°çš„ä¸ªæ•°
 		for(int i=1;i<=k;i++){
 				leCount[i]+=leCount[i-1];
 		}
 		
 		for(int i=temp.length-1;i>=0;i--){
-			//×¢ÒâleCount[temp[i]]-1
+			//æ³¨æ„leCount[temp[i]]-1
 			array[leCount[temp[i]]-1] = temp[i];
 			leCount[temp[i]]--;
 

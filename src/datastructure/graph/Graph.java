@@ -21,7 +21,7 @@ public class Graph {
 			}
 		}
 		
-		//°Ñ¿ÉÄÜÍ¨¹ı¹ıµÄÉèÎª1
+		//æŠŠå¯èƒ½é€šè¿‡è¿‡çš„è®¾ä¸º1
 		graph[0][1] = 1;
 		graph[1][0] = 1;
 		
@@ -43,11 +43,11 @@ public class Graph {
 	
 	public void showPath(int x){
 		for(int i=0;i<n;i++){
-			//xµãµ½iµã£¬Èç¹û¿ÉÒÔÍ¨¹ı¶øÇÒÎ´±éÀú¹ı
+			//xç‚¹åˆ°iç‚¹ï¼Œå¦‚æœå¯ä»¥é€šè¿‡è€Œä¸”æœªéå†è¿‡
 			if(graph[x][i]==1&&visited[i]==false){
-				visited[i] = true;//ÉèÖÃÎªµ½´ï
-				System.out.print(i);//´òÓ¡Â·¾¶
-				showPath(i);//µİ¹é±éÀúµã
+				visited[i] = true;//è®¾ç½®ä¸ºåˆ°è¾¾
+				System.out.print(i);//æ‰“å°è·¯å¾„
+				showPath(i);//é€’å½’éå†ç‚¹
 			}
 		}
 	}

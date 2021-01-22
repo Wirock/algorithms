@@ -1,16 +1,16 @@
 
 package sorting.choice;
 /**
- * ֱ��ѡ������
+ * 直接选择排序
  * 
- * ʱ�临�Ӷȣ�nΪԪ�ظ�������
- * 	ƽ����O(n^2)
- * 	��ã�O(n^2)
- * 	���O(n^2)
+ * 时间复杂度（n为元素个数）：
+ * 	平均：O(n^2)
+ * 	最好：O(n^2)
+ * 	最坏：O(n^2)
  * 
- * �ռ临�Ӷȣ�O(1)
+ * 空间复杂度：O(1)
  * 
- * �ȶ��ԣ����ȶ�
+ * 稳定性：不稳定
  */
 public class ChoiceSort {
 
@@ -18,9 +18,9 @@ public class ChoiceSort {
 		if(source==null||source.length<=0){
 			return;
 		}
-		//ѡ����һ��ֵ��Ϊ��Сֵ����������֮���ֵ���жԱȣ����ҵ���һ������С��ֵ��
-		//������µ�ֵ���Ϊ��С����������֮��������бȽϡ�
-		//һ��ѭ�������ҳ�һ����Сֵ
+		//选定第一个值作为最小值，依次与它之后的值进行对比，当找到第一个比它小的值，
+		//将这个新的值标记为最小，继续与它之后的数进行比较。
+		//一轮循环可以找出一个最小值
 		for(int i=0;i<source.length;i++){
 			int min = i;
 			for(int j=i+1;j<source.length;j++){

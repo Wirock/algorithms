@@ -1,7 +1,7 @@
 package problem;
 /*
- * ÊµÏÖÒ»¸öº¯Êı£¬½«Ò»¸ö×Ö·û´®ÖĞµÄ¿Õ¸ñÌæ»»³É¡°%20¡±¡£
- * ÀıÈç£¬µ±×Ö·û´®ÎªWe Are Happy.Ôò¾­¹ıÌæ»»Ö®ºóµÄ×Ö·û´®ÎªWe%20Are%20Happy¡£
+ * å®ç°ä¸€ä¸ªå‡½æ•°ï¼Œå°†ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­çš„ç©ºæ ¼æ›¿æ¢æˆâ€œ%20â€ã€‚
+ * ä¾‹å¦‚ï¼Œå½“å­—ç¬¦ä¸²ä¸ºWe Are Happy.åˆ™ç»è¿‡æ›¿æ¢ä¹‹åçš„å­—ç¬¦ä¸²ä¸ºWe%20Are%20Happyã€‚
  */
 public class BlankReplace {
     public String replaceSpace(StringBuffer str) {

@@ -2,31 +2,31 @@ package datastructure.tree;
 
 public class BinaryTree {
 	public final static int max = 40;
-	//²ã´Î±éÀúÊ±±£´æ¸÷¸ö½Úµã
+	//å±‚æ¬¡éå†æ—¶ä¿å­˜å„ä¸ªèŠ‚ç‚¹
 	BinaryTree[] elements = new BinaryTree[40];
-	int front;//²ã´Î±éÀú¶ÓÊ×
-	int rear;//²ã´Î±éÀú¶ÓÎ²
+	int front;//å±‚æ¬¡éå†é˜Ÿé¦–
+	int rear;//å±‚æ¬¡éå†é˜Ÿå°¾
 	private Object data;
 	private BinaryTree left,right;
 	
-	//¹¹ÔìÒ¶×Ó
+	//æ„é€ å¶å­
 	public BinaryTree(Object data){
 		this.data = data;
 		left=null;
 		right=null;
 	}
-	//¹¹ÔìÊ÷
+	//æ„é€ æ ‘
 	public BinaryTree(Object data,BinaryTree left,BinaryTree right){
 		this.data = data;
 		this.left = left;
 		this.right = right;
 	}
-	//ÖØĞ´toString
+	//é‡å†™toString
 	public String toString(){
 		return data.toString();
 	}
 	
-	//ÏÈĞò±éÀú
+	//å…ˆåºéå†
 	public void preOrder(BinaryTree root){
 		if(root==null){
 			return;
@@ -36,7 +36,7 @@ public class BinaryTree {
 			preOrder(root.right);
 		}
 	}
-	//ÖĞĞò±éÀú
+	//ä¸­åºéå†
 		public void inOrder(BinaryTree root){
 			if(root==null){
 				return;
@@ -46,7 +46,7 @@ public class BinaryTree {
 				inOrder(root.right);
 			}
 		}
-	//ºóĞò±éÀú
+	//ååºéå†
 		public void postOrder(BinaryTree root){
 			if(root==null){
 				return;
@@ -56,7 +56,7 @@ public class BinaryTree {
 				System.out.print(root.data+" ");
 			}
 		}
-	//²ã´Î±éÀú
+	//å±‚æ¬¡éå†
 		public void layerOrder(BinaryTree root){
 			elements[0] = root;
 			front = 0;
@@ -75,7 +75,7 @@ public class BinaryTree {
 				front++;
 			}
 		}
-		//·µ»ØÒ¶×Ó½ÚµãµÄÊıÄ¿
+		//è¿”å›å¶å­èŠ‚ç‚¹çš„æ•°ç›®
 		public int leaves(){
 			if(left == null&&right == null){
 				return 1;
@@ -83,7 +83,7 @@ public class BinaryTree {
 				return (left==null?0:left.leaves())+(right==null?0:right.leaves());
 			}
 		}
-		//·µ»ØÊ÷µÄÉî¶È
+		//è¿”å›æ ‘çš„æ·±åº¦
 		public int height(){
 			int heightOfTree;
 			int leftHeight = (left==null?0:left.height());
@@ -91,7 +91,7 @@ public class BinaryTree {
 			heightOfTree=(leftHeight<rightHeight?rightHeight:leftHeight);
 			return 1+heightOfTree;
 		}
-		//µ÷»»×óÓÒ×ÓÊ÷µÄÎ»ÖÃ
+		//è°ƒæ¢å·¦å³å­æ ‘çš„ä½ç½®
 		public void exchangLeftRight(){
 			if(left!=null||right!=null){
 				BinaryTree temp = left;
@@ -99,7 +99,7 @@ public class BinaryTree {
 				right = temp;
 			}
 		}
-		//·µ»Ø¶ÔÏóÔÚÊ÷ÖĞµÄ²ã´Î£¬Èô²»ÔÚ£¬Ôò·µ»Ø-1
+		//è¿”å›å¯¹è±¡åœ¨æ ‘ä¸­çš„å±‚æ¬¡ï¼Œè‹¥ä¸åœ¨ï¼Œåˆ™è¿”å›-1
 		public int level(Object object){
 			if(object==data){
 				return 1;
@@ -112,7 +112,7 @@ public class BinaryTree {
 			return 1+(leftLevel<rightLevel?rightLevel:leftLevel);
 		}
 		
-		//ÒÆ³ı½Úµã£¬Í¬Ê±É¾³ıÊ÷
+		//ç§»é™¤èŠ‚ç‚¹ï¼ŒåŒæ—¶åˆ é™¤æ ‘
 		public void defoliate(){
 			if(left==null&&right==null){
 				data=null;
@@ -142,19 +142,19 @@ public class BinaryTree {
 			BinaryTree b = new BinaryTree("b",d,e);
 			BinaryTree c = new BinaryTree("c",f,null);
 			BinaryTree tree = new BinaryTree("a",b,c);
-			System.out.println("Ç°Ğò±éÀú½á¹û£º");
+			System.out.println("å‰åºéå†ç»“æœï¼š");
 			tree.preOrder(tree);
 			System.out.println();
-			System.out.println("ÖĞĞò±éÀú½á¹û£º");
+			System.out.println("ä¸­åºéå†ç»“æœï¼š");
 			tree.inOrder(tree);
 			System.out.println();
-			System.out.println("ºóĞò±éÀú½á¹û£º");
+			System.out.println("ååºéå†ç»“æœï¼š");
 			tree.postOrder(tree);
 			System.out.println();
-			System.out.println("²ã´ÎĞò±éÀú½á¹û£º");
+			System.out.println("å±‚æ¬¡åºéå†ç»“æœï¼š");
 			tree.layerOrder(tree);
 			System.out.println();
-			System.out.println("fËùÔÚ²ã´Î£º"+tree.level("f"));
-			System.out.println("Õâ¿Î¶ş²æÊ÷µÄ¸ß¶È£º"+tree.height());
+			System.out.println("fæ‰€åœ¨å±‚æ¬¡ï¼š"+tree.level("f"));
+			System.out.println("è¿™è¯¾äºŒå‰æ ‘çš„é«˜åº¦ï¼š"+tree.height());
 		}
 }

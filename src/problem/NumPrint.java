@@ -1,7 +1,7 @@
 package problem;
 
 import java.util.Scanner;
-//Êı×Ö·½ĞÎĞıÎÑÅÅĞò
+//æ•°å­—æ–¹å½¢æ—‹çªæ’åº
 public class NumPrint {
 
 	public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package search;
 
 public class OrderSearch {
-	//查找num中数字在array中第一次出现的坐标，没有则返回-1
+	//鏌ユ壘num涓暟瀛楀湪array涓涓�娆″嚭鐜扮殑鍧愭爣锛屾病鏈夊垯杩斿洖-1
 	public static int orderSearch(int[] array,int des){
 		for(int i=0;i<array.length;i++){
 			if(des==array[i]){

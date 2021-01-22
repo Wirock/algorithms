@@ -1,21 +1,21 @@
 package sorting.insertion;
 /**
- * ShellÅÅĞò
+ * Shellæ’åº
  * 
- * Ê±¼ä¸´ÔÓ¶È£¨nÎªÔªËØ¸öÊı£©£º
- * 	Æ½¾ù£ºO(n^1.3)
- * 	×îºÃ£ºO(n)
- * 	×î»µ£ºO(n^2)
+ * æ—¶é—´å¤æ‚åº¦ï¼ˆnä¸ºå…ƒç´ ä¸ªæ•°ï¼‰ï¼š
+ * 	å¹³å‡ï¼šO(n^1.3)
+ * 	æœ€å¥½ï¼šO(n)
+ * 	æœ€åï¼šO(n^2)
  * 
- * ¿Õ¼ä¸´ÔÓ¶È£ºO(1)
+ * ç©ºé—´å¤æ‚åº¦ï¼šO(1)
  * 
- * ÎÈ¶¨ĞÔ£º²»ÎÈ¶¨
+ * ç¨³å®šæ€§ï¼šä¸ç¨³å®š
  */
 public class ShellSort {
 	public static void shellSort(int[] array){
-		//¼ä¸ô
+		//é—´éš”
 		for(int gap = array.length/2;gap>0;gap=gap==2?1:(int)(gap/2.2)){
-			//²åÈëÅÅĞò
+			//æ’å…¥æ’åº
 			for(int i = gap;i<array.length;i++){
 				for(int j=i;j>=gap;j-=gap){
 					if(array[j]<array[j-gap]){

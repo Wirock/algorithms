@@ -3,14 +3,14 @@ package search;
 public class HashSearch {  
 	  
     public static void main(String[] args) {  
-        //¡°³ı·¨È¡Óà·¨¡±  
+        //â€œé™¤æ³•å–ä½™æ³•â€  
         int hashLength = 13;  
   
         int [] array  = { 13, 29, 27, 28, 26, 30, 38 };  
   
-        //¹şÏ£±í³¤¶È  
+        //å“ˆå¸Œè¡¨é•¿åº¦  
         int[] hash = new int[hashLength];  
-        //´´½¨hash  
+        //åˆ›å»ºhash  
         for (int i = 0; i < array.length; i++)  
         {  
             insertHash(hash, hashLength, array[i]);  
@@ -19,13 +19,13 @@ public class HashSearch {
         int result = searchHash(hash,hashLength, 29);  
   
         if (result != -1)  
-            System.out.println("ÒÑ¾­ÔÚÊı×éÖĞÕÒµ½£¬Ë÷ÒıÎ»ÖÃÎª£º" + result);  
+            System.out.println("å·²ç»åœ¨æ•°ç»„ä¸­æ‰¾åˆ°ï¼Œç´¢å¼•ä½ç½®ä¸ºï¼š" + result);  
         else  
-            System.out.println("Ã»ÓĞ´ËÔ­Ê¼");  
+            System.out.println("æ²¡æœ‰æ­¤åŸå§‹");  
     }  
   
     /**** 
-     * Hash±í¼ìË÷Êı¾İ 
+     * Hashè¡¨æ£€ç´¢æ•°æ® 
      *  
      * @param hash 
      * @param hashLength 
@@ -33,15 +33,15 @@ public class HashSearch {
      * @return 
      */  
     public static int searchHash(int[] hash, int hashLength, int key) {  
-        // ¹şÏ£º¯Êı  
+        // å“ˆå¸Œå‡½æ•°  
         int hashAddress = key % hashLength;  
   
-        // Ö¸¶¨hashAdrress¶ÔÓ¦Öµ´æÔÚµ«²»ÊÇ¹Ø¼üÖµ£¬ÔòÓÃ¿ª·ÅÑ°Ö··¨½â¾ö  
+        // æŒ‡å®šhashAdrresså¯¹åº”å€¼å­˜åœ¨ä½†ä¸æ˜¯å…³é”®å€¼ï¼Œåˆ™ç”¨å¼€æ”¾å¯»å€æ³•è§£å†³  
         while (hash[hashAddress] != 0 && hash[hashAddress] != key) {  
             hashAddress = (++hashAddress) % hashLength;  
         }  
   
-        // ²éÕÒµ½ÁË¿ª·Åµ¥Ôª£¬±íÊ¾²éÕÒÊ§°Ü  
+        // æŸ¥æ‰¾åˆ°äº†å¼€æ”¾å•å…ƒï¼Œè¡¨ç¤ºæŸ¥æ‰¾å¤±è´¥  
         if (hash[hashAddress] == 0)  
             return -1;  
         return hashAddress;  
@@ -49,23 +49,23 @@ public class HashSearch {
     }  
   
     /*** 
-     * Êı¾İ²åÈëHash±í 
+     * æ•°æ®æ’å…¥Hashè¡¨ 
      *  
-     * @param hash ¹şÏ£±í 
+     * @param hash å“ˆå¸Œè¡¨ 
      * @param hashLength 
      * @param data 
      */  
     public static void insertHash(int[] hash, int hashLength, int data) {  
-        // ¹şÏ£º¯Êı  
+        // å“ˆå¸Œå‡½æ•°  
         int hashAddress = data % hashLength;  
   
-        // Èç¹ûkey´æÔÚ£¬ÔòËµÃ÷ÒÑ¾­±»±ğÈËÕ¼ÓÃ£¬´ËÊ±±ØĞë½â¾ö³åÍ»  
+        // å¦‚æœkeyå­˜åœ¨ï¼Œåˆ™è¯´æ˜å·²ç»è¢«åˆ«äººå ç”¨ï¼Œæ­¤æ—¶å¿…é¡»è§£å†³å†²çª  
         while (hash[hashAddress] != 0) {  
-            // ÓÃ¿ª·ÅÑ°Ö··¨ÕÒµ½  
+            // ç”¨å¼€æ”¾å¯»å€æ³•æ‰¾åˆ°  
             hashAddress = (++hashAddress) % hashLength;  
         }  
   
-        // ½«data´æÈë×ÖµäÖĞ  
+        // å°†dataå­˜å…¥å­—å…¸ä¸­  
         hash[hashAddress] = data;  
     }  
 }  

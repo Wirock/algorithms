@@ -1,15 +1,15 @@
 package sorting.merge;
 /**
- * �鲢����
+ * 归并排序
  * 
- * ʱ�临�Ӷȣ�nΪԪ�ظ�������
- * 	ƽ����O(nlogn)
- * 	��ã�O(nlogn)
- * 	���O(nlogn)
+ * 时间复杂度（n为元素个数）：
+ * 	平均：O(nlogn)
+ * 	最好：O(nlogn)
+ * 	最坏：O(nlogn)
  * 
- * �ռ临�Ӷȣ�O(n)
+ * 空间复杂度：O(n)
  * 
- * �ȶ��ԣ��ȶ�
+ * 稳定性：稳定
  */
 public class MergeSort {
 	

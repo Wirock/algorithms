@@ -1,58 +1,58 @@
 package sorting.exchange;
 /**
- * ��������
+ * 快速排序
  * 
- * ʱ�临�Ӷȣ�nΪԪ�ظ�������
- * 	ƽ����O(nlogn)
- * 	��ã�O(nlogn)
- * 	���O(n^2)
+ * 时间复杂度（n为元素个数）：
+ * 	平均：O(nlogn)
+ * 	最好：O(nlogn)
+ * 	最坏：O(n^2)
  * 
- * �ռ临�Ӷȣ�O(nlogn)
+ * 空间复杂度：O(nlogn)
  * 
- * �ȶ��ԣ����ȶ�
+ * 稳定性：不稳定
  */
 public class QuickSort {
-	//lΪҪ�������鲿�ֵ������꣬��Ϊβ����
+	//l为要整理数组部分的首坐标，认为尾坐标
 	public int adjustArrays(int[] s,int l,int r){
 		int i = l,j=r;
-		int x = s[l];//s[l]=s[i]�ǵ�һ����
-		//һ��ʼi�������꣬j��β���ֻ꣬Ҫ����������������2��������л���
+		int x = s[l];//s[l]=s[i]是第一个坑
+		//一开始i是首坐标，j是尾坐标，只要待整理的数至少有2个，则进行划分
 		while(i<j){
-			//����������С��x��������s[i]��jΪ��ǰҪ��x�Աȵ���������
-			//�ҵ����������һ��С��x����������j
+			//从右向左找小于x的数来填s[i]，j为当前要与x对比的数的坐标
+			//找到从右向左第一个小于x的数的坐标j
 			while(i<j&&s[j]>=x){
 				j--;
 			}
-			//�����������ڵ�ǰ�Ŀ�s[i]���ұߣ����������
+			//如果这个坐标在当前的坑s[i]的右边，则用它填坑
 			if(i<j){
-				s[i]=s[j];//��s[j]�s[i]�У�s[j]���γ�һ���¿�
-				i++;//��s[i]�Ѿ���ã���������һ����ʼ�������¿�s[j]
+				s[i]=s[j];//将s[j]填到s[i]中，s[j]就形成一个新坑
+				i++;//坑s[i]已经填好，从它的下一个开始找数填新坑s[j]
 			}
 		
-			//�������Ҵ��ڻ����x��������s[j]���ҵ���һ������x����������i
+			//从左到右找大于或等于x的数来填s[j]，找到第一个大于x的数的坐标i
 			while(i<j&&s[i]<x){
 				i++;
 			}
 			
 			if(i<j){
-				s[j]=s[i];//��s[i]�s[j]�У�s[i]���γ�һ���¿�
+				s[j]=s[i];//将s[i]填到s[j]中，s[i]就形成一个新坑
 				j--;
 			}
 			
 		}
-		//��i��j���㣬��i=jʱ��ɷ��飬��ʱs[i]��ߵ���ȫС��x���ұߵ���ȫ����x
-		s[i]=x;//��x���Ϸֽ���
-		return i;//���طֽ������
+		//当i和j交汇，即i=j时完成分组，此时s[i]左边的数全小于x，右边的数全大于x
+		s[i]=x;//用x填上分界点坑
+		return i;//返回分界点坐标
 	}
-	//�������򷨣����η���
-	//�ڿ�����
-	//ѡȡs[l]��Ϊ��׼��������ߵ���������С�������ұߵ�����������
-	//lΪ��׼���꣬
+	//快速排序法（分治法）
+	//挖坑填数
+	//选取s[l]作为基准，让它左边的所有数都小于它，右边的数都大于它
+	//l为基准坐标，
 	public void quickSort(int[] s,int l,int r){
 		if(l<r){
 			int i =adjustArrays(s,l,r);
-			//�ֽ��s[i]�Ѿ�ȷ�������������ߵ����ٷֱ���з���
-			//���޷��ٷ�ʱ��adjustArrays�����ٽ��в������ʿ����õݹ�ķ���
+			//分界点s[i]已经确定，对左右两边的数再分别进行分组
+			//当无法再分时，adjustArrays将不再进行操作，故可以用递归的方法
 			quickSort(s,l,i-1);
 			quickSort(s,i+1,r);
 		}

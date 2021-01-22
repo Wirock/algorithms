@@ -1,21 +1,21 @@
 package search;
 /**
- * ¶ş·Ö²éÑ¯
+ * äºŒåˆ†æŸ¥è¯¢
  * @author Administrator
  *
  */
 public class BinarySearch {
 	/**
-	 * ¶ş·Ö²éÕÒ
-	 * @param array½øĞĞ²éÕÒµÄÓĞĞòÊı×é
-	 * @param from²éÕÒÆğÊ¼×ø±ê
-	 * @param to²éÕÒÖÕÖ¹×ø±ê
-	 * @param key²éÕÒµÄÊı
-	 * @return keyÔÚarrayÖĞµÄ×ø±ê
+	 * äºŒåˆ†æŸ¥æ‰¾
+	 * @param arrayè¿›è¡ŒæŸ¥æ‰¾çš„æœ‰åºæ•°ç»„
+	 * @param fromæŸ¥æ‰¾èµ·å§‹åæ ‡
+	 * @param toæŸ¥æ‰¾ç»ˆæ­¢åæ ‡
+	 * @param keyæŸ¥æ‰¾çš„æ•°
+	 * @return keyåœ¨arrayä¸­çš„åæ ‡
 	 */
 	public static int binarySearch(int[] array,int from,int to,int key){
 		if(from<0||to<0){
-			throw new IllegalArgumentException("²ÎÊı¿ªÊ¼×ø±êºÍÊı×é³¤¶È±ØĞë´óÓÚ0");
+			throw new IllegalArgumentException("å‚æ•°å¼€å§‹åæ ‡å’Œæ•°ç»„é•¿åº¦å¿…é¡»å¤§äº0");
 		}
 		if(from<=to){
 			int middle = (from+to)/2;

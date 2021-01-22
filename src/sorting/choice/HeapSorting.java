@@ -1,15 +1,15 @@
 package sorting.choice;
 /**
- * ¶ÑÅÅĞò
+ * å †æ’åº
  * 
- * Ê±¼ä¸´ÔÓ¶È£¨nÎªÔªËØ¸öÊı£©£º
- * 	Æ½¾ù£ºO(nlogn)
- * 	×îºÃ£ºO(nlogn)
- * 	×î»µ£ºO(nlogn)
+ * æ—¶é—´å¤æ‚åº¦ï¼ˆnä¸ºå…ƒç´ ä¸ªæ•°ï¼‰ï¼š
+ * 	å¹³å‡ï¼šO(nlogn)
+ * 	æœ€å¥½ï¼šO(nlogn)
+ * 	æœ€åï¼šO(nlogn)
  * 
- * ¿Õ¼ä¸´ÔÓ¶È£ºO(1)
+ * ç©ºé—´å¤æ‚åº¦ï¼šO(1)
  * 
- * ÎÈ¶¨ĞÔ£º²»ÎÈ¶¨
+ * ç¨³å®šæ€§ï¼šä¸ç¨³å®š
  */
 public class HeapSorting {	
 	public static void heapSort(int[] array){
@@ -17,7 +17,7 @@ public class HeapSorting {
 			return;
 		}
 		buildMaxHeap(array);
-		//Ã¿´Î°Ñ×î´óÊı·Åµ½×îºó£¬¶ÔÆäËûµÄ½Úµã¼ÌĞø½øĞĞ¶ÑÅÅĞò
+		//æ¯æ¬¡æŠŠæœ€å¤§æ•°æ”¾åˆ°æœ€åï¼Œå¯¹å…¶ä»–çš„èŠ‚ç‚¹ç»§ç»­è¿›è¡Œå †æ’åº
 		for(int i=array.length-1;i>=1;i--){
 			ArrayUtils.exchangeElements(array, i, 0);
 			maxHeap(array,i,0);
@@ -46,7 +46,7 @@ public class HeapSorting {
 		}
 		if(index!=largest){
 			ArrayUtils.exchangeElements(array, index,largest);
-			//½»»»array[largest]ºÍarray[index]ÖĞµÄÊı×Ö£¬
+			//äº¤æ¢array[largest]å’Œarray[index]ä¸­çš„æ•°å­—ï¼Œ
 			maxHeap(array, heapSize,largest);
 		}
 
@@ -63,7 +63,7 @@ public class HeapSorting {
 }
 
 class ArrayUtils{
-	//´òÓ¡Êı×é
+	//æ‰“å°æ•°ç»„
 	public static void printArray(int[] array){
 		System.out.print("{");
 		for(int i=0;i<array.length;i++){
@@ -74,7 +74,7 @@ class ArrayUtils{
 		}
 		System.out.println("}");
 	}
-	//½»»»Á½¸ö×ø±ê¶ÔÓ¦µÄÊı
+	//äº¤æ¢ä¸¤ä¸ªåæ ‡å¯¹åº”çš„æ•°
 	public static void exchangeElements(int[] array,int index1,int index2){
 		int temp = array[index1];
 		array[index1] =  array[index2];
