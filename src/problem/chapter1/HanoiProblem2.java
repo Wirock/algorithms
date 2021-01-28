@@ -11,7 +11,7 @@ import java.util.Stack;
 public class HanoiProblem2 {
 
     public enum Action {
-        No,LToM,MToL,MToR,RToM
+        No,LToM,MToL,MToR,RToM//无，左->中，中->左，中->右，右>中
     }
 
     public int process(int num ,String left,String mid,String right,String from,String to){
@@ -46,6 +46,6 @@ public class HanoiProblem2 {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(new HanoiProblem2().process(3,"A","B","C","A","C"));
     }
 }
