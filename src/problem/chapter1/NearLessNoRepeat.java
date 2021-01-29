@@ -19,6 +19,7 @@ public class NearLessNoRepeat {
                 res[popIndex][0] = leftLessIndex;
                 res[popIndex][1] = i;
             }
+            stack.push(i);
         }
         while(!stack.isEmpty()){
             int popIndex = stack.pop();
