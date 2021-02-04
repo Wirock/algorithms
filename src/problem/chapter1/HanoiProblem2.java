@@ -34,7 +34,8 @@ public class HanoiProblem2 {
         }
         return step;
     }
-
+    //不是互斥动作，且被移动的元素比目标位置顶部元素小则可执行。如果起点再左或右，则之后的步骤都是唯一的
+    //TODO起点为mid的情况
     public int fStackTotStack(Action[] record,Action preNoAct,Action nowAct,Stack<Integer> fStack,Stack<Integer> tStack,String from ,String to){
         if(record[0]!=preNoAct&&fStack.peek()<tStack.peek()){
             tStack.push(fStack.pop());
