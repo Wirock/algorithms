@@ -3,7 +3,7 @@ package datastructure.tree;
 public class BinaryTree {
 	public final static int max = 40;
 	//层次遍历时保存各个节点
-	BinaryTree[] elements = new BinaryTree[40];
+	BinaryTree[] elements = new BinaryTree[max];
 	int front;//层次遍历队首
 	int rear;//层次遍历队尾
 	private Object data;
