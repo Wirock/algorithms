@@ -1,5 +1,8 @@
 package problem.chapter1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 /**
@@ -9,7 +12,19 @@ import java.util.LinkedList;
  * @date 2021/3/2
  */
 public class GetSumLessThanOrEuqualsNum {
-
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] a = br.readLine().split(" ");
+        int n = Integer.parseInt(a[0]);
+        int num = Integer.parseInt(a[1]);
+        String[] b = br.readLine().split(" ");
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = Integer.parseInt(b[i]);
+        }
+        int sum = getNum(arr,num);
+        System.out.println(sum);
+    }
     public static int getNum(int[] arr,int num){
         if(arr==null||arr.length==0){
             return 0;
@@ -22,20 +37,20 @@ public class GetSumLessThanOrEuqualsNum {
         while(i<arr.length){
             //两个队列的对头分别是子窗口i到j的最大值和最小值的坐标
             while(j<arr.length){
-                while(!maxQueue.isEmpty()&&arr[j]>=arr[maxQueue.peekLast()]){
+                while (!maxQueue.isEmpty() && arr[j] >= arr[maxQueue.peekLast()]) {
                     maxQueue.pollLast();
                 }
                 maxQueue.addLast(j);
-                while(!minQueue.isEmpty()&&arr[j]<=arr[minQueue.peekLast()]){
+                while (!minQueue.isEmpty() && arr[j] <= arr[minQueue.peekLast()]) {
                     minQueue.pollLast();
                 }
                 minQueue.addLast(j);
-                if(arr[maxQueue.peekFirst()]+arr[minQueue.peekFirst()]>num){//只要当前数组的最大最小值相差大于num,在这个数组基础上扩展的数组的最大最小值的和就一定大于num
+                if(arr[maxQueue.peekFirst()]-arr[minQueue.peekFirst()]>num){//只要当前数组的最大最小值相差大于num,在这个数组基础上扩展的数组的最大最小值的和就一定大于num
                     break;
                 }
                 j++;
             }
-            res += j-i+1;//加上从i开始的符合条件的子数组的数量
+            res += j-i;//加上从i开始的符合条件的子数组的数量
             if(maxQueue.peekFirst()==i){
                 maxQueue.pollFirst();
             }
