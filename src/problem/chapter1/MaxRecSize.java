@@ -3,7 +3,7 @@ package problem.chapter1;
 import java.util.Stack;
 
 /**
- * 求最大子矩阵的大小
+ * 1.8求最大子矩阵的大小（1.7的应用）
  *
  * @author chenzw
  * @date 2021/3/1
