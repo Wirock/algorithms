@@ -37,20 +37,25 @@ public class GetSumLessThanOrEuqualsNum {
         while(i<arr.length){
             //两个队列的对头分别是子窗口i到j的最大值和最小值的坐标
             while(j<arr.length){
-                while (!maxQueue.isEmpty() && arr[j] >= arr[maxQueue.peekLast()]) {
-                    maxQueue.pollLast();
+                if(maxQueue.isEmpty()||maxQueue.peekLast()!=j){//若break了，会出现maxQueue.peekLast()==j，不需要重复入队，提高效率
+                    while (!maxQueue.isEmpty() && arr[j] >= arr[maxQueue.peekLast()]) {
+                        maxQueue.pollLast();
+                    }
+                    maxQueue.addLast(j);
+                    while (!minQueue.isEmpty() && arr[j] <= arr[minQueue.peekLast()]) {
+                        minQueue.pollLast();
+                    }
+                    minQueue.addLast(j);
                 }
-                maxQueue.addLast(j);
-                while (!minQueue.isEmpty() && arr[j] <= arr[minQueue.peekLast()]) {
-                    minQueue.pollLast();
-                }
-                minQueue.addLast(j);
                 if(arr[maxQueue.peekFirst()]-arr[minQueue.peekFirst()]>num){//只要当前数组的最大最小值相差大于num,在这个数组基础上扩展的数组的最大最小值的和就一定大于num
                     break;
                 }
                 j++;
             }
-            res += j-i;//加上从i开始的符合条件的子数组的数量
+            //经过j的循环,若break,maxQueue的队头是i,j间最大值的坐标，minQueue的队头是i,j间最小值的坐标
+            //若未break,maxQueue的队头是i,j-1间最大值的坐标，minQueue的队头是i,j-1间最小值的坐标
+            //两种情况，符合条件的以arr[i]开头的子数组是arr[i,j-1]和arr[i,j-1]以arr[i]开头的所有子数组
+            res += j-i;//加上i到j-1之间以arr[i]开头的符合条件的子数组的数量
             if(maxQueue.peekFirst()==i){
                 maxQueue.pollFirst();
             }

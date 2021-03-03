@@ -63,7 +63,6 @@ public class MaxSubsequenceSum {
 	}
 	
 	private static int max3(int x, int y, int z) {
-		// TODO Auto-generated method stub
 		if(x>y){
 			if(x>z){
 				return x;
@@ -79,7 +78,6 @@ public class MaxSubsequenceSum {
 		}
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 //		int[] a = {-3,-4,5,-6,2,4,-3,4,1,-9,4,3,7,-3,5,-5,8};
 		int[] a = {-3,-4,-5,-6,-2,-4,-3,-4,-1,-9,-4,-3,-7,-3,-5,-5,-8};
 		//int maxSum=maxSubsequenceSum(a);
