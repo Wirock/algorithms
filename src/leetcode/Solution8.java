@@ -22,14 +22,14 @@ package leetcode;
 public class Solution8 {
     public static int myAtoi(String s) {
         if (s == null) {
-            throw new RuntimeException("error");
+            return 0;
         }
         int sign = 1;
         int result = 0;
         int i = 0;
         while (i < s.length() && s.charAt(i) == ' ')i++ ;
-        if (i > s.length()) {
-            throw new RuntimeException("error");
+        if (i >= s.length()) {
+            return 0;
         }
         char firstChar = s.charAt(i);
         if ( firstChar== '-') {
@@ -38,29 +38,30 @@ public class Solution8 {
         }else if(firstChar== '+'){
             i++;
         }else if(s.charAt(i)<'0'||s.charAt(i)>'9'){
-            throw new RuntimeException("error");
+            return 0;
         }
         while(i<s.length()){
             char cur = s.charAt(i++);
             if(cur<'0'||cur>'9'){
                 break;
             }
-            if(sign*result>Integer.MAX_VALUE/10||sign*result==Integer.MAX_VALUE/10&&cur>'7'){
+            if(sign*result>Integer.MAX_VALUE/10||sign*result==Integer.MAX_VALUE/10&&cur>='7'){
                 return Integer.MAX_VALUE;
             }
-            if(sign*result<Integer.MIN_VALUE/10||sign*result==Integer.MIN_VALUE/10&&cur>'8'){
-                return Integer.MAX_VALUE;
+            if(sign*result<Integer.MIN_VALUE/10||sign*result==Integer.MIN_VALUE/10&&cur>='8'){
+                return Integer.MIN_VALUE;
             }
             result = result*10+(cur-'0');
         }
-
-        return 0;
+        return sign*result;
     }
 
     public static void main(String[] args) {
-        System.out.println(myAtoi(" -1235423452345234523452523452"));
+        /*System.out.println(myAtoi(" -1235423452345234523452523452"));
         System.out.println(myAtoi(" 1235423452345234523452523452"));
         System.out.println(myAtoi("   1235"));
-        System.out.println(myAtoi("   -123-5"));
+        System.out.println(myAtoi("   -123-5"));*/
+        System.out.println(myAtoi("   42"));
+        System.out.println(myAtoi("   55"));
     }
 }
