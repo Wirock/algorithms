@@ -49,4 +49,8 @@ public class MaxRecSize {
         }
         return maxArea;
     }
+
+    public static void main(String[] args) {
+
+    }
 }

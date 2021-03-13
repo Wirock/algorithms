@@ -2,34 +2,36 @@ package leetcode;
 
 /**
  * 5.最长回文子串
+ *
  * @author chenzw
  * @date 2021/3/8
  */
 public class Solution5 {
     //暴力匹配,o(n^3)
     public static String longestPalindrome1(String s) {
-        if(s==null){
+        if (s == null) {
             return null;
         }
-        if(s.length()<2){
+        if (s.length() < 2) {
             return s;
         }
         char[] chars = s.toCharArray();
         int begin = 0;
         int maxLen = 1;
-        for(int i=0;i<s.length();i++){
-            for(int j=i+1;j<s.length();j++){
-                if(j-i+1>maxLen&&validPalindrome(chars,i,j)){
-                    maxLen = j-i+1;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j < s.length(); j++) {
+                if (j - i + 1 > maxLen && validPalindrome(chars, i, j)) {
+                    maxLen = j - i + 1;
                     begin = i;
                 }
             }
         }
-        return s.substring(begin,begin+maxLen);
+        return s.substring(begin, begin + maxLen);
     }
-    private static boolean validPalindrome(char[] chars,int left,int right){
-        while(left<right){
-            if(chars[left]!=chars[right]){
+
+    private static boolean validPalindrome(char[] chars, int left, int right) {
+        while (left < right) {
+            if (chars[left] != chars[right]) {
                 return false;
             }
             left++;
@@ -40,11 +42,11 @@ public class Solution5 {
 
     //动态规划,o(n^2)
     public static String longestPalindrome2(String s) {
-        if(s==null){
+        if (s == null) {
             return null;
         }
         int len = s.length();
-        if(len<2){
+        if (len < 2) {
             return s;
         }
         int maxLen = 1;
@@ -53,8 +55,8 @@ public class Solution5 {
         boolean[][] dp = new boolean[len][len];
         char[] chars = s.toCharArray();
         //单个字符为回文串
-        for(int i=0;i<len;i++){
-            dp[i][i]=true;
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
         }
         for (int j = 1; j < len; j++) {
             for (int i = 0; i < j; i++) {
