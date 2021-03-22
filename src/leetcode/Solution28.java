@@ -16,20 +16,43 @@ public class Solution28 {
         if("".equals(haystack)){
             return -1;
         }
-        for(int i=0;i<=haystack.length()-needle.length();){
-            boolean match = true;
-            for(int j=0;j<needle.length();j++){
-                if(haystack.charAt(i+j)!=needle.charAt(j)){
-                    match = false;
-                    i += j+1;
-                    break;
-                }
-            }
-            if(match){
-                return i;
+        int[] nextArray = getNextArray(needle);
+        int i=0;
+        int j=0;
+        while(i<haystack.length()&&j<needle.length()){
+            if(haystack.charAt(i)==needle.charAt(j)){
+                i++;
+                j++;
+            }else if(nextArray[j]==-1){
+                i++;
+            }else{
+                j=nextArray[j];
             }
         }
+        if(j==needle.length()){
+            return i-j;
+        }
         return -1;
+    }
+    private static int[] getNextArray(String needle){
+        if(needle.length()<2){
+            return new int[]{-1};
+        }
+        int[] nextArray = new int[needle.length()];
+        nextArray[0]=-1;
+        nextArray[1]=0;
+        int i=2;
+        int j = 0;
+        while(i<needle.length()){
+            if(needle.charAt(i-1)==needle.charAt(j)){
+                nextArray[i++]=++j;//连续匹配累加1
+            }else if(j==0){//即nextArray[j]==-1,跳过此位
+                nextArray[i++]=0;//一子字符都不匹配则为0；
+            }else{
+                j = nextArray[j];//部分匹配，根据next数组回退
+            }
+        }
+        return nextArray;
     }
 
     public static void main(String[] args) {
