@@ -4,7 +4,6 @@ import common.CommonUtil;
 import datastructure.list.ListNode;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -40,7 +39,7 @@ import java.util.Comparator;
  * @date 2021/3/18
  */
 public class Solution23 {
-    public static ListNode mergeKLists(ListNode[] lists) {
+    /*public static ListNode mergeKLists(ListNode[] lists) {
         if(lists==null||lists.length==0){
             return null;
         }
@@ -72,8 +71,29 @@ public class Solution23 {
                 return l1.val-l2.val;
             }
         });
+    }*/
+    public static ListNode mergeKLists(ListNode[] lists) {
+        return mergeLists(lists,0,lists.length-1);
+    }
+    private static ListNode mergeLists(ListNode[] lists,int left,int right) {
+        if(left==right)return lists[left];
+        int mid = (left+right)/2;
+        ListNode l1 = mergeLists(lists, left, mid);
+        ListNode l2 = mergeLists(lists, mid+1, right);
+        return merge2Lists(l1,l2);
+    }
+    private static ListNode merge2Lists(ListNode l1,ListNode l2){
+        if(l1==null)return l2;
+        if(l2==null)return l1;
+        if(l1.val<l2.val) {
+            l1.next = merge2Lists(l1.next, l2);
+            return l1;
+        }else{
+            l2.next = merge2Lists(l1,l2.next);
+            return l2;
+        }
     }
     public static void main(String[] args) {
-        CommonUtil.printListNode(mergeKLists(new ListNode[]{CommonUtil.array2ListNode(new int[]{1,2,3}),CommonUtil.array2ListNode(new int[]{14,21,3}),CommonUtil.array2ListNode(new int[]{11,12,32})}));
+        CommonUtil.printListNode(mergeKLists(new ListNode[]{CommonUtil.array2ListNode(new int[]{1,2,3}),CommonUtil.array2ListNode(new int[]{3,14,21}),CommonUtil.array2ListNode(new int[]{11,12,32})}));
     }
 }
