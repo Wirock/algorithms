@@ -88,32 +88,9 @@ public class Solution1114 {
                 e.printStackTrace();
             }
         });
-        Thread t4 = new Thread(()->{
-            try {
-                foo.first(first);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        Thread t5 = new Thread(()->{
-            try {
-                foo.second(second);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        Thread t6 = new Thread(()->{
-            try {
-                foo.third(third);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
 
         t1.start();
+        t2.start();
         t3.start();
-        t5.start();
-        t6.start();
-        t4.start();
     }
 }
