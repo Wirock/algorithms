@@ -32,4 +32,10 @@ public class CommonUtil {
         }
         return head;
     }
+
+    public void printArray(int[][] array){
+        for(int[] a:array){
+            System.out.println(Arrays.toString(a));
+        }
+    }
 }
