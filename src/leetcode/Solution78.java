@@ -46,5 +46,6 @@ public class Solution78 {
         list.add(nums[cur]);
         dfs(cur + 1, nums,result,list);
         list.remove(list.size() - 1);
+        dfs(cur + 1, nums,result,list);
     }
 }
