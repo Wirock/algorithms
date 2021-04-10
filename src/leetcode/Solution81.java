@@ -27,29 +27,22 @@ public class Solution81 {
     }
 
     private static boolean search(int[] nums, int target,int left ,int right){
-        if(left==right){
-            return nums[left]==target;
-        }
-        if(left+1==right){
-            return target==nums[left]||target==nums[right];
-        }
+        if(left>right)return false;
         int mid = (left+right)/2;
-        if(nums[mid]==target){
-            return true;
-        }
-        if(nums[left]>nums[mid]){//左大于中，拐点在左
+        if(nums[mid]==target)return true;
+        if(nums[left]>nums[mid]){//左大于中，右侧无拐点
             if(target>nums[mid]&&target<=nums[right]){//比中大的,比右小的在右侧找
                 return search(nums,target,mid+1,right);
             }else{//其余的在左侧找
                 return search(nums,target,left,mid-1);
             }
-        }else if(nums[left]<nums[mid]){//左小于中，拐点在右，或没有拐点
+        }else if(nums[left]<nums[mid]){//左小于中，左侧无拐点
             if(target>=nums[left]&&target<nums[mid]){
                 return search(nums,target,left,mid-1);
             }else{
                 return search(nums,target,mid+1,right);
             }
-        }else{//拐点不确定
+        }else{//拐点不确定，两边同时考虑
             return search(nums,target,left,mid-1)||search(nums,target,mid+1,right);
         }
     }

@@ -20,18 +20,13 @@ public class Solution33 {
 
     private static int findIndex(int[] nums,int target,int left,int right){
         if(left>right) return -1;
-        if(nums[left]==target)return left;
-        if(nums[right]==target)return right;
-        if(left==right) return -1;
         int mid = (left+right)/2;
-        if(nums[mid]==target){
-            return mid;
-        }
+        if(nums[mid]==target)return mid;
         if(target<nums[mid]){
-            if(nums[left]<target||nums[right]>nums[mid])return findIndex(nums,target,left,mid-1);
+            if(nums[left]<=target||nums[right]>nums[mid])return findIndex(nums,target,left,mid-1);
             return findIndex(nums,target,mid+1,right);
         }else {
-            if(nums[right]>target||nums[left]<nums[mid])return findIndex(nums,target,mid+1,right);
+            if(nums[right]>=target||nums[left]<nums[mid])return findIndex(nums,target,mid+1,right);
             return findIndex(nums,target,left,mid-1);
         }
     }
