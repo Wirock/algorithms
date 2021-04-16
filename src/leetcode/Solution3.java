@@ -7,10 +7,12 @@ import java.util.Set;
  * 3. 无重复字符的最长子串
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度
  *
+ *
  * @author chenzw
  * @date 2021/3/4
  */
 public class Solution3 {
+    //has滑动窗口
     public static int lengthOfLongestSubstring(String s) {
         int maxLen = 0;
         int right = 0;
