@@ -33,6 +33,7 @@ import java.util.PriorityQueue;
  * @date 2021/4/6
  */
 public class LCP30 {
+    //贪心策略：类加和<=0时，把之前最小的值移动到最后
     public static int magicTower(int[] nums) {
         PriorityQueue<Integer> list =new PriorityQueue<>();
         long sum = 1;

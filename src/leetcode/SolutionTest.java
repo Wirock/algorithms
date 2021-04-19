@@ -182,10 +182,68 @@ public class SolutionTest {
         }
         return (int)(n==0?9:n);
     }
+
+    /*public static int arraySign(int[] nums) {
+        int product = 1;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                return 0;
+            }
+            product*=nums[i]>0?1:-1;
+        }
+        return product;
+    }*/
+
+    /*public static int findTheWinner(int n, int k) {
+        LinkedList<Integer> list = new LinkedList();
+        for(int i=1;i<=n;i++){
+            list.addLast(i);
+        }
+        int index = 1;
+        while(list.size()>1){
+            int count=k%list.size();
+            if(count==0){
+                count=list.size();
+            }
+            index+=count-1;
+            index%=list.size();
+            if(index==0){
+                index=list.size();
+            }
+            list.remove(index-1);
+        }
+        return list.peekFirst();
+    }*/
+    public static int minSideJumps(int[] obstacles) {
+        return  minSideJumps(obstacles,0,2);
+    }
+
+    public static int minSideJumps(int[] obstacles,int i,int row) {
+        if(i<obstacles.length-1){
+            if(row==obstacles[i+1]){
+                if(row==2){
+                    if(obstacles[i]==0){
+                        return 1+Math.min(minSideJumps(obstacles,i,1),minSideJumps(obstacles,i,3));
+                    }else{
+                        return 1+minSideJumps(obstacles,i,obstacles[i]==1?3:1);
+                    }
+                }else{
+                    if(obstacles[i]==2){
+                        return 1+minSideJumps(obstacles,i,row==1?3:1);
+                    }else{
+                        return 1+minSideJumps(obstacles,i,2);
+                    }
+                }
+            }else{
+                return minSideJumps(obstacles,i+1,row);
+            }
+        }
+        return 0;
+    }
     public static void main(String[] args) {
      /*   System.out.println(countDifferentSubsequenceGCDs(new int[]{6,10,3}));
         System.out.println(countDifferentSubsequenceGCDs(new int[]{5,15,40,5,6}));*/
-        System.out.println(orchestraLayout(4,1,1));
+        /*System.out.println(orchestraLayout(4,1,1));
         System.out.println(orchestraLayout(4,1,2));
         System.out.println(orchestraLayout(4,1,3));
         System.out.println(orchestraLayout(4,2,1));
@@ -208,6 +266,18 @@ public class SolutionTest {
         System.out.println(orchestraLayout((int)1e9,(int)1e5,(int)1e7));
         System.out.println(orchestraLayout((int)1e9,(int)1e3,(int)1e5));
         System.out.println(orchestraLayout((int)1e9,(int)1e5,(int)1e6));
-        System.out.println(System.currentTimeMillis()-start);
+        System.out.println(System.currentTimeMillis()-start);*/
+        //System.out.println(arraySign(new int[]{7,36,96,70,85,23,5,18,4,12,89,92,9,30,53,14,96,32,13,43,37,60,75,7,83,68,20,8,-24,-80,-27,-92,-96,-20,-16,-52,-49,-38}));
+        /*System.out.println(findTheWinner(5,2));
+        System.out.println(findTheWinner(6,5));
+        System.out.println(findTheWinner(1,1));
+        System.out.println(findTheWinner(1,2));
+        System.out.println(findTheWinner(2,3));
+        System.out.println(findTheWinner(8,8));
+        System.out.println(findTheWinner(5,4));*/
+        /*System.out.println(minSideJumps(new int[]{0,1,2,3,0}));
+        System.out.println(minSideJumps(new int[]{0,1,1,3,3,0}));
+        System.out.println(minSideJumps(new int[]{0,2,1,0,3,0}));*/
+        //System.out.println(minSideJumps(new int[]{0,2,2,1,0,3,0,3,0,1,3,1,1,0,1,3,1,1,1,0,2,0,0,3,3,0,3,2,2,0,0,3,3,3,0,0,2,0,0,3,3,0,3,3,0,0,3,1,0,1,0,2,3,1,1,0,3,3,0,3,1,3,0,2,2,0,1,3,0,1,0,3,0,1,3,1,2,2,0,0,3,0,1,3,2,3,2,1,0,3,2,2,0,3,3,0,3,0,0,1,0}));
     }
 }
