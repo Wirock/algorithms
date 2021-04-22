@@ -1,5 +1,8 @@
 package sorting.distribution;
 
+/**
+ * 计数排序
+ */
 public class CountSort {
 //输入数组元素只能是0到k之间的整数
 	public static void countSort(int[] array,int k){
@@ -29,7 +32,6 @@ public class CountSort {
 		
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] array = {9,8,7,6,5,4,3,2,1,0,3,5,6,6};
 		System.out.println("before:");
 		for(int i=0;i<array.length;i++){

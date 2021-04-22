@@ -13,9 +13,9 @@ package sorting.exchange;
  */
 public class QuickSort {
 	//l为要整理数组部分的首坐标，认为尾坐标
-	public int adjustArrays(int[] s,int l,int r){
-		int i = l,j=r;
-		int x = s[l];//s[l]=s[i]是第一个坑
+	public int adjustArrays(int[] s,int left,int right){
+		int i = left,j=right;
+		int x = s[left];//s[left]是第一个坑
 		//一开始i是首坐标，j是尾坐标，只要待整理的数至少有2个，则进行划分
 		while(i<j){
 			//从右向左找小于x的数来填s[i]，j为当前要与x对比的数的坐标
@@ -58,7 +58,6 @@ public class QuickSort {
 		}
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] s=new int[]{31,43,353,5676,788,42,1,3,44535,656,120,56,99};
 		QuickSort qs = new QuickSort();
 		qs.quickSort(s,0,s.length-1);

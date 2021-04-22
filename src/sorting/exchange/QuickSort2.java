@@ -1,6 +1,9 @@
 package sorting.exchange;
 /**
- * 快速排序,荷兰国旗问题
+ * 荷兰国旗问题
+ * 快速排序优化,分治成三个部分，小于哨兵的区域，等于哨兵的区域，大于哨兵的区域。
+ * 递归对小于区和大于区进行分治，就能得到排好序的数组。
+ * 比普通快排优化的地方是避免了对相等部分的重复处理
  * 
  * 时间复杂度（n为元素个数）：
  * 	平均：O(nlogn)
@@ -19,20 +22,23 @@ public class QuickSort2 {
 			quickSort(array,border[1],right);
 		}
 	}
-	private int[] partition(int[] array,int l,int r,int num){
-		int left = l-1;//小于区的最后一个元素下标
-		int right = r+1;//大于区的第一个元素下标
-		int cur = l;
+	//分治，将数组分成 小于num，等于num，大于num三个部分，返回数组为三个区间的分解点（小于区的最后一个数和大于区的第一个数的坐标）
+	private int[] partition(int[] array,int le,int r,int num){
+		//循环后结束后为小于区的最后一个元素下标,最开始时在最左端前一位，循环结束后<le,表示在le和r之间没有小于区
+		int left = le-1;
+		//循环后结束后为大于区的第一个元素下标，最开始在最右端后一位，循环结束后>r,表示在le和r之间没有大于区
+		int right = r+1;
+		int cur = le;//当前指针，cur的每一步都保证cur之前的数<=num
 		while(cur<right){
 			if(array[cur]<num){
 				left++;
-				swap(array,cur,left);
-				cur++;
+				if(cur!=left)swap(array,cur,left);
+				cur++;//left<=cur,由于cur之前的数<=num,所以换到cur处的数<=num,处理下一位
 			}else if(array[cur]>num){
 				right--;
-				swap(array,cur,right);
+				swap(array,cur,right);//交换后cur不变，因为换到cur处的数也可能大于num
 			}else{
-				cur++;
+				cur++;//cur处的数=num,无需处理，跳到下一位
 			}
 		}
 		return new int[]{left,right};
@@ -46,7 +52,6 @@ public class QuickSort2 {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] s=new int[]{31,43,353,5676,788,42,1,3,44535,656,120,56,99};
 		QuickSort2 qs = new QuickSort2();
 		qs.quickSort(s,0,s.length-1);

@@ -7,10 +7,10 @@ package search;
 public class BinarySearch {
 	/**
 	 * 二分查找
-	 * @param array进行查找的有序数组
-	 * @param from查找起始坐标
-	 * @param to查找终止坐标
-	 * @param key查找的数
+	 * @param array 进行查找的有序数组
+	 * @param from 查找起始坐标
+	 * @param to 查找终止坐标
+	 * @param key 查找的数
 	 * @return key在array中的坐标
 	 */
 	public static int binarySearch(int[] array,int from,int to,int key){

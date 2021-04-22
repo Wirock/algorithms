@@ -39,7 +39,6 @@ public class ChoiceSort {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] source = {43,-67,93,-32,12,64,21,9,-78,94,3};
 		ChoiceSort cs = new ChoiceSort();
 		System.out.println("before:");

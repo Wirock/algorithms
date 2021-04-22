@@ -1,5 +1,8 @@
 package sorting.distribution;
 
+/**
+ * 基数排序
+ */
 public class RadixSort {
 //d为输入数组元素的最大位数
 	public static void radixSort(int[] array,int d){
@@ -32,7 +35,6 @@ public class RadixSort {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] array = {191,18,237,46,5,4,3,72,191,0,3,25,66,66};
 		radixSort(array,100);
 		for(int i=0;i<array.length;i++){
