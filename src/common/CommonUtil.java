@@ -120,4 +120,17 @@ public class CommonUtil {
             fillScreen(screen, row + 1, mid, columnEnd, node.right);
         }
     }
+
+
+    public static void printTreeInOrder(TreeNode root){
+        inOrder(root);
+        System.out.println();
+    }
+
+    private static void inOrder(TreeNode root){
+        if(root==null)return;
+        if(root.left!=null)inOrder(root.left);
+        System.out.print(root.val+" ");
+        if(root.right!=null)inOrder(root.right);
+    }
 }
