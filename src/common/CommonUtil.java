@@ -53,6 +53,7 @@ public class CommonUtil {
                 queue.addLast(tree);
             }else{
                 TreeNode root=queue.pollFirst();
+
                 if(array[i]==null){
                     root.left=null;
                 }else{
@@ -60,13 +61,15 @@ public class CommonUtil {
                     queue.addLast(root.left);
                 }
                 i++;
-                if(array[i]==null){
-                    root.right=null;
-                }else{
-                    root.right=new TreeNode(array[i]);
-                    queue.addLast(root.right);
+                if(i<array.length){
+                    if(array[i]==null){
+                        root.right=null;
+                    }else{
+                        root.right=new TreeNode(array[i]);
+                        queue.addLast(root.right);
+                    }
+                    i++;
                 }
-                i++;
             }
         }
         return tree;
