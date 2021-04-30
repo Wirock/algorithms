@@ -37,7 +37,7 @@ import java.util.Set;
  * @author chenzw
  * @date 2021/4/29
  */
-public class LeetCode403 {
+public class Solution403 {
 
     /*public static boolean canCross(int[] stones) {
         boolean[][] dp =new boolean[stones.length][stones.length+1];//dp[i][j]表示上一步跳跃j能否到达第i个石头
