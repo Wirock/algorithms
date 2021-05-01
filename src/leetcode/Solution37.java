@@ -105,7 +105,9 @@ public class Solution37 {
         int i = space[0], j = space[1];
         int mask = ~(line[i] | column[j] | block[i / 3][j / 3]) & 0x1ff;//汇总已填过的位，取反，为1表示该位可以填入数字
         for (; mask != 0 && !valid; mask &= (mask - 1)) {//循环，mask每次去掉最后一位1
-            int digitMask = mask & (-mask);//只保留maxk最右一位1，其他未置零。如：mask = 00101010,-mask=11010110,mask & (-mask)=00000010
+            //补码是原码除符号位按位取反+1，这里符号位恒为0，符号位与操作也为0。
+            // 因为~(mask-1)=~mask+1，符号位恒为0，所以有mask&~(mask-1)等价于mask & (-mask)
+            int digitMask = mask & (-mask);//只保留maxk最右一位1，其他位置零。如：mask = 00101010,-mask=11010110,mask & (-mask)=00000010
             int digit = Integer.bitCount(digitMask - 1);//digitMask - 1中1的数量，即mask从右数在第几位（从0开始）
             flip(i, j, digit);
             board[i][j] = (char) (digit + '0' + 1);//digit中的1在右边起第几位就表示数字几
