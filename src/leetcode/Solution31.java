@@ -33,22 +33,29 @@ import java.util.Arrays;
  */
 public class Solution31 {
     public static void nextPermutation(int[] nums) {
-        if(nums.length<2){
+        if(nums.length<2){//单个元素，下一个排列是他本身
             return;
         }
-        for(int i=nums.length-2;i>=0;i--){
-            for(int j=nums.length-1;j>i;j--){
-                if(nums[i]<nums[j]){
-                    int temp=nums[i];
-                    nums[i]=nums[j];
-                    nums[j]=temp;
-                    Arrays.sort(nums,i+1,nums.length);
-                    return;
-                }
-            }
-        }
-        int i=0;
+        //从右往左，寻找第一对左边比右边小的元素，交换他们的位置
+        int i=nums.length-2;
         int j=nums.length-1;
+        while(i>=0&&nums[i]>=nums[i+1]){
+            i--;
+        }
+        if(i>=0){
+            while(j>i&&nums[i]>=nums[j]){
+                j--;
+            }
+            int temp=nums[i];
+            nums[i]=nums[j];
+            nums[j]=temp;
+            Arrays.sort(nums,i+1,nums.length);
+            return;
+        }
+
+        //如果全部元素都满足左边比右边大，则已是值最大的排列，进行翻转，下一个排列回到最小的排列
+        i=0;
+        j=nums.length-1;
         while(i<j){
             int temp=nums[i];
             nums[i]=nums[j];
@@ -60,8 +67,9 @@ public class Solution31 {
 
     public static void main(String[] args) {
         //int[] nums = new int[]{4,2,0,2,3,2,0};
-        int[] nums = new int[]{2,3,1};
-        nextPermutation(nums);
+        //int[] nums = new int[]{2,3,1};
+        int[] nums = new int[]{9,4,8,6,3,5};
+        for(int i=0;i<64;i++)nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
