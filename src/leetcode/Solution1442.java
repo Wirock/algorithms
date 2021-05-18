@@ -92,15 +92,17 @@ public class Solution1442 {
         Map<Integer,Integer> count = new HashMap<>();
         Map<Integer,Integer> total = new HashMap<>();
 
-        int[] sum = new int[arr.length];
-        sum[0] = arr[0];
-        for(int i=1;i<arr.length;i++){
-            sum[i] = sum[i-1]^arr[i];
-        }
+        int sum = 0;
         int ans = 0;
-        for(int i=0;i<sum.length;i++){
-            count.put(sum[i],count.getOrDefault(sum[i],0)+1);
-            total.put(sum[i],count.getOrDefault(sum[i],0)+i);
+        count.put(0,1);
+        total.put(0,0);
+        for(int i=0;i<arr.length;i++){
+            sum ^= arr[i];
+            if(count.containsKey(sum)){
+                ans += i*count.get(sum)-total.get(sum);
+            }
+            count.put(sum,count.getOrDefault(sum,0)+1);
+            total.put(sum,total.getOrDefault(sum,0)+i+1);//sum[k]==sum[i],j的范围是[i+2,k],j的数目是k减去i+1
         }
         return ans;
     }
