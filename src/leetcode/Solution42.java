@@ -8,22 +8,25 @@ package leetcode;
  */
 public class Solution42 {
     public static int trap(int[] height) {
-        int left=0;
-        int right=height.length-1;
-        int sum=0;
+        int empty = 0;
+        int full = 0;
         for(int i=0;i<height.length;i++){
-            sum+=height[i];
+            empty+=height[i];
         }
-        int volumn = 0;
-        int count = 1;
-        while(left<=right){
-            while(left<=right&&height[left]<count)left++;
-            while(left<=right&&height[right]<count)right--;
-            volumn+=right-left+1;
-            count++;
+        int left = 0;
+        int right = height.length-1;
+        int count = 0;
+        while(true){
+            while(left<=right&&height[left]<=count)left++;
+            while(left<=right&&height[right]<=count)right--;
+            if(left>right)break;
+            int min = Math.min(height[left],height[right]);
+            full += (min-count)*(right-left+1);
+            count = min;
         }
-        return volumn-sum;
+        return full-empty;
     }
+
 
     public static void main(String[] args) {
         System.out.println(trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
