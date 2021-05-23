@@ -35,19 +35,19 @@ import java.util.List;
 public class Solution46 {
     public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        dfs(ans,new ArrayList<>(),nums,0);
+        dfs(ans,new ArrayList<>(),nums);
         return ans;
     }
 
-    private static void dfs(List<List<Integer>> ans,List<Integer> list,int[] nums,int index){
-        if(index==nums.length){
+    private static void dfs(List<List<Integer>> ans,List<Integer> list,int[] nums){
+        if(list.size()==nums.length){
             ans.add(new ArrayList<>(list));
             return;
         }
         for(int num:nums){
             if(!list.contains(num)){
                 list.add(num);
-                dfs(ans,list,nums,index+1);
+                dfs(ans,list,nums);
                 list.remove(list.size()-1);
             }
         }
