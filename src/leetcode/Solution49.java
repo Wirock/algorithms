@@ -23,6 +23,21 @@ import java.util.*;
  * @date 2021/5/26
  */
 public class Solution49 {
+    //排序
+    /*public static List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>> map = new HashMap<>();
+        for(int i=0;i<strs.length;i++){
+            char[] chars = strs[i].toCharArray();
+            Arrays.sort(chars);
+            String key = new String(chars);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(strs[i]);
+            map.put(key,list);
+        }
+        return new ArrayList<>(map.values());
+    }*/
+
+    //计数
     public static List<List<String>> groupAnagrams(String[] strs) {
         Map<String,List<String>> map = new HashMap<>();
         int[] count = new int[26];
@@ -32,7 +47,7 @@ public class Solution49 {
             }
             StringBuilder sb = new StringBuilder();
             for(int j=0;j<count.length;j++){
-                if(count[j]>0){
+                while(count[j]>0){
                     sb.append('a'+j);
                     count[j]--;
                 }

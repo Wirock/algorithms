@@ -2,6 +2,8 @@ package sorting.distribution;
 
 /**
  * 计数排序
+ * o(n)
+ * 稳定，对于对象类型，计数时可以用桶有序装入，排序时按先进先出，可以做到稳定
  */
 public class CountSort {
 //输入数组元素只能是0到k之间的整数
@@ -27,9 +29,7 @@ public class CountSort {
 			//注意leCount[temp[i]]-1
 			array[leCount[temp[i]]-1] = temp[i];
 			leCount[temp[i]]--;
-
 		}
-		
 	}
 	public static void main(String[] args) {
 		int[] array = {9,8,7,6,5,4,3,2,1,0,3,5,6,6};
