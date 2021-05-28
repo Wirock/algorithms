@@ -36,7 +36,7 @@ public class Solution25 {
             kHead = next;
             kTail = next;
             kCur = kHead.next;
-            //翻转k个节点,如果剩余不足k，则不处理
+            //翻转k个节点
             while(next!=null){
                 if(++count==k){
                     while(kCur!=null&&count-->1){
@@ -68,6 +68,49 @@ public class Solution25 {
     }
 
     public static ListNode reverseKGroup2(ListNode head, int k) {
+        if(k<2){
+            return head;
+        }
+        ListNode pre = new ListNode(0);
+        pre.next = head;
+        ListNode next = head;
+        ListNode ans=null;
+        int count = 0;
+        while(next!=null){
+            if(++count==k){
+                //截断k位后的部分
+                ListNode tail=next;
+                next = next.next;
+                tail.next = null;
+
+                //把连续k个节点的部分翻转，前后接上原来的部分
+                tail = pre.next;
+                ListNode reverse = reverse(pre.next);
+                if(ans==null)ans=reverse;
+                pre.next = reverse;
+                tail.next = next;
+                pre = tail;
+                count=0;
+            }else{
+                next = next.next;
+            }
+        }
+        if(ans==null)ans=head;
+        return ans;
+    }
+    private static ListNode reverse(ListNode head){
+        ListNode pre = null;
+        ListNode cur = head;
+        while(cur!=null){
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+    /*public static ListNode reverseKGroup2(ListNode head, int k) {
         ListNode hair = new ListNode(0);
         hair.next = head;
         ListNode pre = hair;
@@ -81,13 +124,13 @@ public class Solution25 {
                     return hair.next;
                 }
             }
-            ListNode nex = tail.next;
+            ListNode next = tail.next;
             ListNode[] reverse = myReverse(head, tail);
             head = reverse[0];
             tail = reverse[1];
             // 把子链表重新接回原链表
             pre.next = head;
-            tail.next = nex;
+            tail.next = next;
             pre = tail;
             head = tail.next;
         }
@@ -105,7 +148,7 @@ public class Solution25 {
             p = nex;
         }
         return new ListNode[]{tail, head};
-    }
+    }*/
 
     public static void main(String[] args) {
         int[] array = new int[100000];
