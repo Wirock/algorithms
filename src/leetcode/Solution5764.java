@@ -49,6 +49,7 @@ package leetcode;
  * @date 2021/5/23
  */
 public class Solution5764 {
+    //二分查找
     public int minSpeedOnTime(int[] dist, double hour) {
         if(dist.length-1>=hour) return -1;
         int left=1;
