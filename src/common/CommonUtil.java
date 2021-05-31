@@ -41,6 +41,11 @@ public class CommonUtil {
             System.out.println(Arrays.toString(a));
         }
     }
+    public static void printArray(double[][] array){
+        for(double[] a:array){
+            System.out.println(Arrays.toString(a));
+        }
+    }
 
     public static TreeNode arrays2BSTByLevel(Integer[] array){
         LinkedList<TreeNode> queue = new LinkedList<>();
