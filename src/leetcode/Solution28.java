@@ -74,7 +74,7 @@ public class Solution28 {
         //从i=2开始，若在i处不匹配，要根据实际情况来选择
         int i=2;
         int j = 0;
-        //若在haystack第m位与needle的第n位不匹配，则haystack的第m-n单m-1位与needle的前n位相同
+        //若在haystack第m位与needle的第n位不匹配，则haystack的第m-n到m-1位与needle的前n位相同
         //计算needle.substring(0,i)的后缀与neddle前缀的公共部分长度,本质
         while(i<needle.length()){
             if(needle.charAt(i-1)==needle.charAt(j)){
