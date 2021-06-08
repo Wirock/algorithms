@@ -34,6 +34,7 @@ package leetcode;
  */
 public class Solution474 {
 
+    //01背包问题
     /*public static int findMaxForm(String[] strs, int m, int n) {
         int[][][] dp = new int[strs.length+1][m+1][n+1];//dp[k][i][j]表示前k个子符串，0不超过m个，1不超过n个的最大数量
         for(int k=1;k<=strs.length;k++){
