@@ -39,7 +39,7 @@ package leetcode;
  */
 public class Solution879 {
     //f(k,i,j)=f(k-1,i,j)+f(k-1,i-group[k],j-profit[k])    f(k,i,j)表示前k项工程不超过i人，得到利润j的选择数
-    public static int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {
+    /*public static int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {
         int mod = (int)1e9+7;
         int totalProfit = 0;
         for(int i=0;i<profit.length;i++){
@@ -63,8 +63,26 @@ public class Solution879 {
             ans = (int)(ans+dp[n][j])%mod;
         }
         return ans;
-    }
+    }*/
 
+    //优化，不必计算每一个利润的数量， 令f(k,i,j)表示前k项工程不超过i人，得到利润最少为j的选择数，则j的范围[0,sum(profit)]缩小至[0,minProfit]
+    //f(k,i,j)=f(k-1,i,j)+f(k-1,i-group[k],max(j-profit[k],0))
+    public static int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {
+        int mod = (int)1e9+7;
+        int[][] dp = new int[n+1][minProfit+1];//状态转移方程第k个只与第k-1个相关，故可减少一个维度， dp[i][j]表示在在前k个项目中选择，人员不超过i的利润且利润至少为j的选择数
+        for(int i=0;i<=n;i++){
+            dp[i][0]=1;
+        }
+        for(int k=0;k<group.length;k++){
+            //两个循环都倒序，保证下面dp[i-group[k]][j-profit[k]在dp[i][j]后更新，因为由状态转移方程看，它应该是上一轮的
+            for(int i=dp.length-1;i>=1;i--){
+                for(int j=dp[i].length-1;j>=0;j--){
+                    if(i>=group[k])dp[i][j] = (dp[i][j]+dp[i-group[k]][Math.max(j-profit[k],0)])%mod;
+                }
+            }
+        }
+        return dp[n][minProfit];
+    }
     public static void main(String[] args) {
         System.out.println(profitableSchemes(5,3,new int[]{2,2},new int[]{2,3}));
         System.out.println(profitableSchemes(10,5,new int[]{2,3,5},new int[]{6,7,8}));

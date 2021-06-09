@@ -40,7 +40,7 @@ package leetcode;
  */
 public class Solution1049 {
 
-    public static int lastStoneWeightII(int[] stones) {
+    /*public static int lastStoneWeightII(int[] stones) {
         boolean[][][] dp = new boolean[stones.length][stones.length][101];//dp[i][j][k]表示stones下标[i,j]之间的全部元素能否得到k
         for(int i=0;i<stones.length;i++){
             dp[i][i][stones[i]]=true;
@@ -62,8 +62,25 @@ public class Solution1049 {
             if(dp[0][stones.length-1][k])return k;
         }
         return 100;
-    }
+    }*/
 
+    //优化，把石头分为两堆，每次从两个堆各取一个出来粉碎，把较大的石子剩余的部分放回它所属的堆，如此循环直到其中一个堆没有石头剩下。
+    //剩下的部分为两个堆石子重量总和的差。要使剩下的部分最小，只要使分成的两堆石子的重量差最小，即每堆石子的总重量尽可能接近全部石子的总重量的一半
+    //转换为01背包问题，设所有石子总重量为sum,在容量不超过sum/2,总价值,价值不超过sum/2的条件下能拿到的最大价值
+    //f(i,j) = Math.max(f(i-1,j),f(i-1,j-stones[i-1])) f(i,j)表示前i个元素，重量不超过j的最大值
+    public static int lastStoneWeightII(int[] stones) {
+        int sum=0;
+        for(int i=0;i<stones.length;i++){
+            sum+=stones[i];
+        }
+        int[] dp = new int[sum/2+1];
+        for(int i=0;i<stones.length;i++){
+            for(int j=sum/2;j>0;j--){
+                if(j>=stones[i])dp[j] = Math.max(dp[j],dp[j-stones[i]]+stones[i]);
+            }
+        }
+        return sum-dp[sum/2]-dp[sum/2];
+    }
     public static void main(String[] args) {
         System.out.println(lastStoneWeightII(new int[]{2,7,4,1,8,1}));
         System.out.println(lastStoneWeightII(new int[]{31,26,33,21,40}));
