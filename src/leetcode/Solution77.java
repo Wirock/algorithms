@@ -29,7 +29,7 @@ public class Solution77 {
         dfs(ans,new ArrayList<>(),n,k,1);
         return ans;
     }
-    private static void dfs(List<List<Integer>> ans,List<Integer> list,int n,int k,int cur){
+    /*private static void dfs(List<List<Integer>> ans,List<Integer> list,int n,int k,int cur){
         if(list.size()==k){
             ans.add(new ArrayList<>(list));
             return;
@@ -40,6 +40,18 @@ public class Solution77 {
             dfs(ans,list,n,k,i+1);
             list.remove(list.size()-1);
         }
+    }*/
+
+    private static void dfs(List<List<Integer>> ans,List<Integer> list,int n,int k,int cur){
+        if(k-list.size()>n-cur+1)return;
+        if(list.size()==k){
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+        list.add(cur);
+        dfs(ans,list,n,k,cur+1);
+        list.remove(list.size()-1);
+        dfs(ans,list,n,k,cur+1);
     }
 
     public static void main(String[] args) {
