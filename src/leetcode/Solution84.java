@@ -57,7 +57,7 @@ public class Solution84 {
 
     public static int largestRectangleArea(int[] heights) {
         if(heights.length<1)return 0;
-        Stack<Integer> stack = new Stack<>();//单调栈，栈顶元素不小于它下面的元素
+        Stack<Integer> stack = new Stack<>();//单调栈，栈顶元素大于它下面的元素
         int ans = 0;
         for(int i=0;i<heights.length;i++){
             while(!stack.isEmpty()&&heights[stack.peek()]>=heights[i]){
