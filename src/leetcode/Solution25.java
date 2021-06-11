@@ -20,7 +20,7 @@ import datastructure.list.ListNode;
  * @date 2021/3/20
  */
 public class Solution25 {
-    public static ListNode reverseKGroup(ListNode head, int k) {
+   /* public static ListNode reverseKGroup(ListNode head, int k) {
         if(k<2){
             return head;
         }
@@ -65,6 +65,36 @@ public class Solution25 {
             }
         }
         return result;
+    }*/
+
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        if(head==null)return null;
+        if(k<2)return head;
+        ListNode result = new ListNode(0);
+        result.next = head;
+        ListNode pre = result;
+        ListNode kTail = pre.next;
+        int count = 0;
+        ListNode kCur = head;//当前要移动的节点
+        //翻转k个节点
+        while(head!=null){
+            if(++count==k){
+                kCur = kCur.next;
+                while(kCur!=null&&--count>0){//依次把第2到第k个节点删除，插入到第1位，接完成一组k个节点的反转
+                    ListNode next = kCur.next;
+                    kCur.next = pre.next;
+                    pre.next=kCur;
+                    kCur = next;
+                }
+                pre = kTail;
+                pre.next = kCur;
+                kTail = kCur;
+                head = kCur;
+            }else{
+                head = head.next;
+            }
+        }
+        return result.next;
     }
 
     public static ListNode reverseKGroup2(ListNode head, int k) {
@@ -98,6 +128,8 @@ public class Solution25 {
         if(ans==null)ans=head;
         return ans;
     }
+
+
     private static ListNode reverse(ListNode head){
         ListNode pre = null;
         ListNode cur = head;
@@ -157,7 +189,7 @@ public class Solution25 {
         }
         ListNode listNode = CommonUtil.array2ListNode(array);
         long start = System.currentTimeMillis();
-        ListNode result = reverseKGroup2(listNode,10);
+        ListNode result = reverseKGroup(listNode,10);
         long end = System.currentTimeMillis();
         CommonUtil.printListNode(result);
         System.out.println(end-start);
