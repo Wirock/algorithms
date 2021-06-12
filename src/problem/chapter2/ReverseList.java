@@ -28,10 +28,11 @@ public class ReverseList {
         while(head!=null){
             head = head.next;
             cur.next = pre;
-            pre.last = cur;
+            if(pre!=null)pre.last = cur;
             pre = cur;
             cur = head;
         }
+        pre.last = null;
         return pre;
     }
 }
