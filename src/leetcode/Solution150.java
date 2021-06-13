@@ -39,6 +39,14 @@ public class Solution150 {
         return stack.pop();
     }
 
+    public int minOperationsToFlip(String expression) {
+        String[] and = expression.split("&");
+        int count = 0;
+        for(String s:and){
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         System.out.println(evalRPN(new String[]{ "2","1","+","3","*"}));
     }
