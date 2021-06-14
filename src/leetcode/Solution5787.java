@@ -85,6 +85,7 @@ public class Solution5787 {
         boolean[] del = new boolean[players.length];
         for(int i=0;i<1<<(n+1);i++){
             Arrays.fill(del,false);
+
             boolean pass=false;
             for(int j=0;j<n;j++){
                 if((i>>j&1)==0){
