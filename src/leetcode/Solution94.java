@@ -3,7 +3,9 @@ package leetcode;
 import common.CommonUtil;
 import datastructure.tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 94. 二叉树的中序遍历
@@ -54,7 +56,8 @@ public class Solution94 {
         return ans;
     }*/
 
-    public static List<Integer> inorderTraversal(TreeNode root) {
+    //迭代
+    /*public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         if(root==null)return ans;
         Deque<TreeNode> stack = new LinkedList<>();
@@ -66,6 +69,31 @@ public class Solution94 {
             root = stack.pop();
             ans.add(root.val);
             root = root.right;
+        }
+        return ans;
+    }*/
+
+    //Morris，对每个节点寻找它的前继节点，把当前节点及其左子树构建成右指针关联的链表关系。
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        if(root==null)return ans;
+        TreeNode cur = root;
+        while(cur!=null){
+            if(cur.left==null) {
+                ans.add(cur.val);
+                cur = cur.right;
+            }else{//当前节点存在左子树，则单点节点的前驱节点是左子树最右侧的节点
+                TreeNode predecessor = cur.left;
+                while(predecessor.right!=null&&predecessor.right!=cur)predecessor=predecessor.right;
+                if(predecessor.right!=cur){//未建立前驱关系,建立前驱关系
+                    predecessor.right = cur;
+                    cur = cur.left;
+                }else{//已建立前驱关系，则是第二次遍历到该节点，输出节点值，并解除前驱关系
+                    predecessor.right = null;
+                    ans.add(cur.val);
+                    cur = cur.right;
+                }
+            }
         }
         return ans;
     }
