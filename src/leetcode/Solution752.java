@@ -52,6 +52,7 @@ import java.util.Set;
  * @date 2021/6/25
  */
 public class Solution752 {
+    //bfs
     public static int openLock(String[] deadends, String target) {
         Set<String> deadSet = new HashSet<>();
         for(String s:deadends){

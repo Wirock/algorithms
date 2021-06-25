@@ -32,8 +32,15 @@ public class HeapSorting {
 		if(array==null||array.length<=0){
 			return;
 		}
+		//计算非叶子节点的数量
+		//设节点数量为n,度为0的节点数为N0,度为1的节点数为N1，度为2的节点数为N2
+		//1.根据节点数量得到等式：N0+N1+N2=n
+		//2.根据度可得等式(除根节点外，其他所有节点上方都有一个树枝)：N1+2*N2=n-1
+		//3.又因为堆是完全二叉树，故当n为奇数时,N1=0，n为偶数时，N1=1
+		//由以上三点得：n为奇数  N1+N2=(n-1)/2,n为偶数 N1+N2=n/2
+		//所以程序中最大值上浮操作只需要遍历[0,array.length/2-1]得部分即可
 		int half = array.length/2;//最后一个叶子节点的父节点
-		for(int i=half;i>=0;i--){//从下往上，保证被操作的节点的左右子树都是最大堆
+		for(int i=half-1;i>=0;i--){//从下往上，保证被操作的节点的左右子树都是最大堆
 			maxHeap(array,array.length,i);
 		}
 	}
@@ -64,7 +71,7 @@ public class HeapSorting {
 	}
 
 	public static void main(String[] args) {
-		int[] array = {9,8,-7,6,-5,4,3,2,1,0,-1,-2,-3};
+		int[] array = {9,8,-7,6,-5,4,3,2,1,0,-1,-2,-3,10};
 		System.out.println("Before heap:");
 		System.out.println(Arrays.toString(array));
 		heapSort(array);
