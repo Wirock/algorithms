@@ -53,6 +53,7 @@ public class Solution5779 {
     public static int minWastedSpace(int[] packages, int[][] boxes) {
         int mod = (int)1e9+7;
         Arrays.sort(packages);
+        //计算包裹前缀和
         long[] sum = new long[packages.length+1];
         for(int i=1;i<sum.length;i++){
             sum[i] = sum[i-1]+packages[i-1];
@@ -63,6 +64,7 @@ public class Solution5779 {
             if(packages[packages.length-1]>box[box.length-1])continue;
             int left=0;
             long waste=0;
+            //遍历每个箱子，找出不大于它的最大包裹，这个包裹及它与上个箱子找到的最大包裹间的所有箱子都使用这个箱子
             for(int b:box){
                 int right = search(packages, b, left);
                 waste=waste+(long)b*(long)(right-left)-sum[right]+sum[left];

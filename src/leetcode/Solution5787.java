@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 5787. 最佳运动员的比拼回合 显示英文描述
@@ -60,6 +57,7 @@ import java.util.List;
 public class Solution5787 {
     static int max=0;
     static int min=Integer.MAX_VALUE;
+
     public static int[] earliestAndLatest(int n, int firstPlayer, int secondPlayer) {
         int[] players = new int[n];
         for(int i=1;i<=n;i++){
@@ -67,11 +65,11 @@ public class Solution5787 {
         }
         max=0;
         min=Integer.MAX_VALUE;
-        dfs(players,firstPlayer,secondPlayer,1);
+        search(players,firstPlayer,secondPlayer,1);
         return new int[]{min,max};
     }
-
-    private static void dfs(int[] players,int firstPlayer, int secondPlayer,int count){
+    //暴力模拟，递归枚举每一层的晋级情况
+    private static void search(int[] players,int firstPlayer, int secondPlayer,int count){
         int n = players.length/2;
         for(int i=0;i<n;i++){
             if(players[i]==firstPlayer&&players[players.length-1-i]==secondPlayer){
@@ -103,7 +101,7 @@ public class Solution5787 {
                 if(del[j])continue;
                 p[k++]=players[j];
             }
-            dfs(p,firstPlayer,secondPlayer,count+1);
+            search(p,firstPlayer,secondPlayer,count+1);
         }
 
     }
