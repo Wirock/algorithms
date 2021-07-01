@@ -37,7 +37,7 @@ import datastructure.list.ListNode;
  * @date 2021/3/3
  */
 public class Solution2 {
-
+    //归并
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = null;
         ListNode pre = null;

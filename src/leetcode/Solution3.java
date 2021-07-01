@@ -12,7 +12,7 @@ import java.util.Set;
  * @date 2021/3/4
  */
 public class Solution3 {
-    //has滑动窗口
+    //hash滑动窗口
     public static int lengthOfLongestSubstring(String s) {
         int maxLen = 0;
         int right = 0;

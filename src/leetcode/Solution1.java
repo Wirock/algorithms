@@ -12,13 +12,12 @@ import java.util.Map;
  * <p>
  * 你可以按任意顺序返回答案。
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/two-sum
  *
  * @author chenzw
  * @date 2021/3/3
  */
 public class Solution1 {
+    //hash
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
