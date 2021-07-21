@@ -1,8 +1,5 @@
 package leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 138. 复制带随机指针的链表
  * 给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。
@@ -56,7 +53,7 @@ import java.util.Map;
  */
 public class Solution138 {
     //hash
-    public Node copyRandomList(Node head) {
+    /*public Node copyRandomList(Node head) {
         Map<Node,Node> map = new HashMap<>();
         Node help = new Node(0);
         Node cur = help;
@@ -77,6 +74,27 @@ public class Solution138 {
             }
         }
         return help.next;
+    }*/
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        for (Node node = head; node != null; node = node.next.next) {
+            Node nodeNew = new Node(node.val);
+            nodeNew.next = node.next;
+            node.next = nodeNew;
+        }
+        for (Node node = head; node != null; node = node.next.next) {
+            Node nodeNew = node.next;
+            nodeNew.random = (node.random != null) ? node.random.next : null;
+        }
+        Node headNew = head.next;
+        for (Node node = head; node != null; node = node.next) {
+            Node nodeNew = node.next;
+            node.next = node.next.next;
+            nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;
+        }
+        return headNew;
     }
     class Node {
         int val;
