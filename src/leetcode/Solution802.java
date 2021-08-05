@@ -1,7 +1,9 @@
 package leetcode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 802. 找到最终的安全状态
@@ -57,4 +59,46 @@ public class Solution802 {
         color[cur]=2;
         return true;
     }
+
+    //方法二：反图+拓扑排序
+    public List<Integer> eventualSafeNodes2(int[][] graph) {
+        int n = graph.length;
+        //初始化反图
+        List<List<Integer>> reveseGraph = new ArrayList<>(graph.length);
+        for (int i = 0; i < n; ++i) {
+            reveseGraph.add(new ArrayList<Integer>());
+        }
+        //初始化入度
+        int[] indegree = new int[n];
+        //构建反图，统计反图入读
+        for(int i=0;i<n;i++){
+            for(int j:graph[i]){
+                reveseGraph.get(j).add(i);
+            }
+            indegree[i] = graph[i].length;
+        }
+
+        //对反图进行拓扑排序，得到安全节点
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0;i<n;i++){
+            if(indegree[i]==0) {
+                queue.offer(i);
+            }
+        }
+        while(!queue.isEmpty()){
+            int node = queue.poll();
+            for(int i:reveseGraph.get(node)){
+                if(--indegree[i]==0) {
+                    queue.offer(i);
+                }
+            }
+        }
+
+        List<Integer> ans = new LinkedList<>();
+        for(int i=0;i<n;i++){
+            if(indegree[i]==0)ans.add(i);
+        }
+        return ans;
+    }
+
 }
