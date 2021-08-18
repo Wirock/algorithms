@@ -19,14 +19,16 @@ public class Solution18 {
             return result;
         }
         Arrays.sort(nums);
-        for(int i=0;i<nums.length;i++){
+        for(int i=0;i<nums.length-3;i++){
             if(i>0&&nums[i]==nums[i-1]){
                 continue;
             }
-            for(int j=i+1;j<nums.length;j++){
+            for(int j=i+1;j<nums.length-2;j++){
                 if(j>i+1&&nums[j]==nums[j-1]){
                     continue;
                 }
+                if(nums[i]+nums[j]+nums[j+1]+nums[j+2]>target)break;//优化，未遍历的最小的4个数和超过target，后续的和都大于target，直接结束
+                if(nums[i]+nums[j]+nums[nums.length-1]+nums[nums.length-2]<target)continue;//优化，当前i,j组合与最大的两个数和小于target,则直接进入下一个i,j组合
                 int m=j+1;
                 int n=nums.length-1;
                 while(m<n){
