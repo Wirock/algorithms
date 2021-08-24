@@ -87,7 +87,7 @@ public class Solution787 {
 
         for(int i=1;i<dp.length;i++){
             for(int[] f:flights){
-                dp[i][f[1]] = Math.min(dp[i][f[1]],dp[i-1][f[0]]+dp[i][f[1]]);
+                dp[i][f[1]] = Math.min(dp[i][f[1]],dp[i-1][f[0]]+f[2]);
             }
         }
         int ans = MAX;
