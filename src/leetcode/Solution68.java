@@ -68,7 +68,7 @@ public class Solution68 {
         int[] space = new int[words.length];//space[i]为words[i]后面应填入的空格数量
         int len = words[0].length();
         int begin = 0;
-        //计算每一行放入尽可能多的单词的情况下，没个单词后面应插入的空格数
+        //计算每一行放入尽可能多的单词的情况下，每个单词后面应插入的空格数
         for(int i=1;i<words.length;i++){
             if(len+1+words[i].length()<=maxWidth){
                 len = len+1+words[i].length();
