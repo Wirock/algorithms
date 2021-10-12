@@ -11,7 +11,7 @@ package leetcode;
  * @date 2021/3/23
  */
 public class Solution29 {
-    public static int divide(int dividend,int divisor){
+    /*public static int divide(int dividend,int divisor){
         if(divisor==1){
             return dividend;
         }else if(divisor==-1){
@@ -48,6 +48,34 @@ public class Solution29 {
             return -count + divide(dividend - d,divisor);
         }
 
+    }*/
+
+    public static int divide(int dividend, int divisor) {
+        long de = dividend;
+        long ds = divisor;
+        int sign = 1;
+        if(de<0){
+            sign = -sign;
+            de = -de;
+        }
+        if(ds<0){
+            sign = -sign;
+            ds = -ds;
+        }
+        long ans = 0;
+        while(de>=ds){
+            long i = 1;
+            long k = ds;
+            while(k+k<=de){
+                k += k;
+                i += i;
+            }
+            de -= k;
+            ans += i;
+        }
+        ans = sign>0?ans:-ans;
+        if(ans>Integer.MAX_VALUE)return Integer.MAX_VALUE;
+        return (int)ans;
     }
 
     public static void main(String[] args) {
