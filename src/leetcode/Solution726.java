@@ -46,47 +46,33 @@ import java.util.*;
  * @date 2021/7/5
  */
 public class Solution726 {
+    //栈+hash
     public String countOfAtoms(String formula) {
-        Deque<String> elem = new LinkedList<>();
-        Deque<Integer> count = new LinkedList<>();
-        Deque<Integer> temp = new LinkedList<>();
+        Deque<String> elem = new LinkedList<>();//存放元素
+        Deque<Integer> count = new LinkedList<>();//存放元素数量,两个特殊情况：0对应左括号，-1对用右括号
         Map<String,Integer> map = new HashMap<>();
         char[] c = formula.toCharArray();
         int i=0;
         while(i<c.length){
-            if(c[i]=='('){
-                if(!count.isEmpty()&&count.peek()==-1){
-                    int p = count.pop();
-                    while((p = count.pop())>0){
-                        temp.push(p);
-                    }
-                    while(!temp.isEmpty())count.push(temp.pop());
-                }
+            if(c[i]=='('){//遇到左括号，如果上一个字符是右括号。则前一对括号里计数完成，去掉这对括号
+                if(!count.isEmpty()&&count.peek()==-1)countBetweenParentheses(count,1);
                 count.push(0);
             }else if(c[i]==')'){
                 count.push(-1);
-            }else if(c[i]>'0'&&c[i]<='9'){
+            }else if(c[i]>'0'&&c[i]<='9'){//如果是数字，识别数字所占位数，转化成int
                 int num = c[i]-'0';
                 while(i+1<c.length&&c[i+1]>='0'&&c[i+1]<='9'){
                     num = num*10+c[++i]-'0';
                 }
-                int p = count.pop();
-                if(p==-1){
-                    while((p = count.pop())>0){
-                        temp.push(p*num);
-                    }
-                    while(!temp.isEmpty())count.push(temp.pop());
+                int p = count.peek();
+                if(p==-1){//如果前面是括号，则括号里的元素整体乘以数量
+                    countBetweenParentheses(count,num);
                 }else{
+                    count.pop();
                     count.push(p*num);
                 }
             }else{
-                if(!count.isEmpty()&&count.peek()==-1){
-                    int p = count.pop();
-                    while((p = count.pop())>0){
-                        temp.push(p);
-                    }
-                    while(!temp.isEmpty())count.push(temp.pop());
-                }
+                if(!count.isEmpty()&&count.peek()==-1)countBetweenParentheses(count,1);
                 StringBuilder sb = new StringBuilder(c[i]+"");
                 while(i+1<c.length&&c[i+1]>='a'&&c[i+1]<='z'){
                     sb.append(c[++i]);
@@ -96,10 +82,12 @@ public class Solution726 {
             }
             i++;
         }
+        //hashMap统计所有数量
         while(!elem.isEmpty()){
             String k = elem.pop();
             map.put(k,map.getOrDefault(k,0)+count.pop());
         }
+        //字典排序后输出
         StringBuilder ans = new StringBuilder();
         List<Map.Entry<String,Integer>> entryList = new ArrayList<>(map.entrySet());
         Collections.sort(entryList,(x, y)->x.getKey().compareTo(y.getKey()));
@@ -109,4 +97,18 @@ public class Solution726 {
         }
         return ans.toString();
     }
+
+    //计算括号中的数量
+    private void countBetweenParentheses(Deque<Integer> count,int num){
+        Deque<Integer> temp = new LinkedList<>();
+        count.pop();
+        int p;
+        while((p = count.pop())>0){
+            temp.push(p*num);
+        }
+        while(!temp.isEmpty())count.push(temp.pop());
+    }
+
+
+
 }
