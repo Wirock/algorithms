@@ -90,9 +90,11 @@ public class Solution4 {
 
         if (k == 0) return Math.min(nums1[start1], nums2[start2]);
 
+        //取num1的第k/2个元素nums1[i]和num2的第k/2个元素nums2[j]比较
         int i = start1 + Math.min(len1 - 1, (k - 1) / 2);
         int j = start2 + Math.min(len2 - 1, (k - 1) / 2);
-
+        //nums1[i] > nums2[j],则第k大的元素在num1[i]的左侧或num2[j]的右侧中
+        //nums1[i] <= nums2[j],则第k大的元素在num1[i]的右侧或num2[j]的左侧中
         if (nums1[i] > nums2[j]) {
             return findKthElement(nums1, start1, nums2, j + 1, k - (j - start2 + 1));
         } else {
