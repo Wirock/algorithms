@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
+ * 求数组中最小的k个元素
  * @author chenzw
  * @date 2021/9/4
  */

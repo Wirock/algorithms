@@ -15,35 +15,27 @@ public class QuickSort {
 	//l为要整理数组部分的首坐标，认为尾坐标
 	public int adjustArrays(int[] s,int left,int right){
 		int i = left,j=right;
-		int x = s[left];//s[left]是第一个坑
+		int pivot = s[i];//s[i]的值放入x中,x作为哨兵，s[i]作为是第一个坑
 		//一开始i是首坐标，j是尾坐标，只要待整理的数至少有2个，则进行划分
 		while(i<j){
 			//从右向左找小于x的数来填s[i]，j为当前要与x对比的数的坐标
 			//找到从右向左第一个小于x的数的坐标j
-			while(i<j&&s[j]>=x){
-				j--;
-			}
+			while(i<j&&s[j]>=pivot)j--;
 			//如果这个坐标在当前的坑s[i]的右边，则用它填坑
-			if(i<j){
-				s[i]=s[j];//将s[j]填到s[i]中，s[j]就形成一个新坑
-				i++;//坑s[i]已经填好，从它的下一个开始找数填新坑s[j]
-			}
-		
+			s[i]=s[j];//将s[j]填到s[i]中，s[j]就形成一个新坑
 			//从左到右找大于或等于x的数来填s[j]，找到第一个大于x的数的坐标i
-			while(i<j&&s[i]<x){
-				i++;
-			}
-			
-			if(i<j){
-				s[j]=s[i];//将s[i]填到s[j]中，s[i]就形成一个新坑
-				j--;
-			}
-			
+			while(i<j&&s[i]<pivot)i++;
+			s[j]=s[i];//将s[i]填到s[j]中，s[i]就形成一个新坑
+
 		}
 		//当i和j交汇，即i=j时完成分组，此时s[i]左边的数全小于x，右边的数全大于x
-		s[i]=x;//用x填上分界点坑
+		s[i]=pivot;//用x填上分界点坑
 		return i;//返回分界点坐标
 	}
+
+
+
+
 	//快速排序法（分治法）
 	//挖坑填数
 	//选取s[l]作为基准，让它左边的所有数都小于它，右边的数都大于它
