@@ -54,6 +54,23 @@ public class Solution66 {
         }
     }
 
+    /*public int[] plusOne(int[] digits) {
+        int n = digits.length;
+        int carry = 1;
+        while(n>0&&carry==1){
+            digits[--n]+=1;
+            carry = digits[n]/10;
+            digits[n] = digits[n]%10;
+        }
+        if(carry==1){
+            int[] ans = new int[digits.length+1];
+            ans[0] = 1;
+            for(int i=1;i<ans.length;i++)ans[i] = digits[i-1];
+            return ans;
+        }
+        return digits;
+    }*/
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(plusOne(new int[]{1,2,3})));
         System.out.println(Arrays.toString(plusOne(new int[]{4,3,2,1})));
