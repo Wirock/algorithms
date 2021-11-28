@@ -27,6 +27,7 @@ package leetcode;
  */
 public class Solution375 {
     //dp[i][j]表示猜[i,j]之间的数保证能赢需要的最少现金
+    //dp[i][j] = min(k+max(dp[i][k],dp[k][j])) , i<=k<=j
     public int getMoneyAmount(int n) {
         int[][] dp = new int[n+1][n+1];
         for(int len=1;len<n;len++){
