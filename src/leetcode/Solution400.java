@@ -39,12 +39,12 @@ public class Solution400 {
         }
         num += (n-sum)/i;//得到目标数字或目标数字前一个数字
         if((n-sum)%i==0)return num%10;//若刚好除尽则为目标数字，取最后一位
-        return ((num+1)+"").charAt((n-sum)%i-1)-'0';//除不尽则为目标数字前一个数，取第i位
+        return ((num+1)/((int)Math.pow(10,i-(n-sum)%i)))%10;//除不尽则为目标数字前一个数，取第i位
     }
 
     public static void main(String[] args) {
-        /*System.out.println(new Solution400().findNthDigit(11));
-        System.out.println(new Solution400().findNthDigit(1234567));*/
+        System.out.println(new Solution400().findNthDigit(11));
+        System.out.println(new Solution400().findNthDigit(1234567));
         System.out.println(new Solution400().findNthDigit(2147483647));
     }
 }
