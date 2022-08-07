@@ -2,7 +2,6 @@ package common;
 
 import datastructure.list.ListNode;
 import datastructure.tree.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +33,10 @@ public class CommonUtil {
             cur = cur.next;
         }
         return head;
+    }
+
+    public static void printArray(int[] array){
+        System.out.println(Arrays.toString(array));
     }
 
     public static void printArray(int[][] array){
