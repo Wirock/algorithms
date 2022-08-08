@@ -31,13 +31,17 @@ import java.util.List;
  */
 public class Solution761 {
     //分治
+    //看作山峰高度变化,1代表高度增加，0代表高度减少
+    //题意可看作是对递归对子峰进行由高到低排序
     public String makeLargestSpecial(String s) {
         if(s.length()<=2){
             return s;
         }
         char[] cs = s.toCharArray();
-        int cnt = 0;
+
+        //寻找最低的山谷高度
         int min = Integer.MAX_VALUE;
+        int cnt = 0;
         for(int i=0;i<cs.length;i++){
             if(cs[i]=='1'){
                 if(i>0&&cs[i-1]=='0'&&cnt<min){
@@ -51,6 +55,7 @@ public class Solution761 {
         if(min == Integer.MAX_VALUE){
             return s;
         }
+        //按最低山谷划分子峰，进行排序
         StringBuilder ans = new StringBuilder();
         int begin = min;
         List<String> list = new ArrayList<>();
@@ -80,17 +85,4 @@ public class Solution761 {
         }
         return ans.toString();
     }
-
-
-   /* public String makeLargestSpecial(String s) {
-        char[] cs = s.toCharArray();
-        Deque<Integer> stack = new LinkedList<>();
-        for(int i=0;i<cs.length;i++){
-            if(cs[i]=='1'&&!stack.isEmpty()&&stack.peek()=='0'){
-                StringBuilder sb = new StringBuilder();
-                while (stack.peek()=='0')
-            }
-        }
-        return s;
-    }*/
 }
