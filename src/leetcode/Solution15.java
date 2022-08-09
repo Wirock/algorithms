@@ -13,6 +13,7 @@ import java.util.List;
  * @date 2021/3/14
  */
 public class Solution15 {
+    //排序，双指针
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;

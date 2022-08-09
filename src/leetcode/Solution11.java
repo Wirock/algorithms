@@ -11,6 +11,7 @@ package leetcode;
  */
 public class Solution11 {
 
+    //双指针
     public static int maxArea(int[] height) {
         int maxArea = 0;
         int left = 0;
@@ -19,7 +20,7 @@ public class Solution11 {
         while (left < right) {
             maxHeight = height[left] > height[right] ? height[right] : height[left];
             int newArea = maxHeight * (right - left);
-            maxArea = newArea > maxArea ? newArea : maxArea;
+            maxArea = Math.max(newArea, maxArea);
             while (left < height.length && height[left] <= maxHeight) left++;
             while (right > 0 && height[right] <= maxHeight) right--;
         }

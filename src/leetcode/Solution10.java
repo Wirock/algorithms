@@ -27,7 +27,7 @@ package leetcode;
  * @date 2021/3/13
  */
 public class Solution10 {
-
+    //动态规划
     public static boolean isMatch(String s, String p) {
         int m = s.length();
         int n = p.length();

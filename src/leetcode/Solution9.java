@@ -11,13 +11,18 @@ package leetcode;
  */
 public class Solution9 {
     public static boolean isPalindrome(int x) {
+        //一位数一定是回文数
         if (x >= 0 && x <= 9) return true;
+        //多位数以0结尾一定不是回文数，因为不能以0开头
         if (x < 0 || x % 10 == 0) return false;
+        //不需要全部反转，只需要反转一半即可
+        //reverse表示x后半部分的反转
         int reverse = 0;
         while (x > reverse) {
             reverse = reverse * 10 + x % 10;
             x /= 10;
         }
+        //判断前半部分与后半部分的反转是否相等，如果是奇数，前半部分要去掉最后一位，即原数的中间位
         return x == reverse || x == reverse / 10;
     }
 
