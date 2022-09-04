@@ -57,6 +57,7 @@ import java.util.PriorityQueue;
  * Created by Chenzw on 2022/9/4 13:52
  */
 public class Solution6170 {
+    //优先队列
     public int mostBooked(int n, int[][] meetings) {
         PriorityQueue<long[]> using = new PriorityQueue<>((x, y)->{
             if(x[1]==y[1]){

@@ -44,6 +44,7 @@ import java.util.Map;
  * Created by Chenzw on 2022/9/4 13:49
  */
 public class Solution6167 {
+    //哈希
     public boolean checkDistances(String s, int[] distance) {
         char[] cs = s.toCharArray();
         Map<Character,Integer> map = new HashMap<>();

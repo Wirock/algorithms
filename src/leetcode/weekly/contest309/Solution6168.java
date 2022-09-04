@@ -34,6 +34,7 @@ package leetcode.weekly.contest309;
  * Created by Chenzw on 2022/9/4 13:50
  */
 public class Solution6168 {
+    //dp
     public int numberOfWays(int startPos, int endPos, int k) {
         final int MOD = (int)1e9+7;
         int n = Math.max(startPos,endPos)+2*k+3;

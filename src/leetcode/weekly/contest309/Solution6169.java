@@ -37,6 +37,7 @@ package leetcode.weekly.contest309;
  * Created by Chenzw on 2022/9/4 13:52
  */
 public class Solution6169 {
+    //滑动窗口，位运算
     public int longestNiceSubarray(int[] nums) {
         int n = nums.length;
         int mask = 0;
