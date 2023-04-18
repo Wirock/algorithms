@@ -37,7 +37,7 @@ package leetcode;
  * @date 2021/6/23
  */
 public class Solution122 {
-    public int maxProfit(int[] prices) {
+    /*public int maxProfit(int[] prices) {
         int ans = 0;
         int minIndex = 0;
         int i=1;
@@ -45,6 +45,17 @@ public class Solution122 {
             while(i<prices.length&&prices[i]>=prices[i-1])i++;
             if(i-1>minIndex)ans+=prices[i-1]-prices[minIndex];
             minIndex=i++;
+        }
+        return ans;
+    }*/
+
+    //把所有上升的差值加起来即可
+    public int maxProfit(int[] prices) {
+        int ans = 0;
+        for(int i=1;i<prices.length;i++){
+            if(prices[i]>prices[i-1]){
+                ans += prices[i] - prices[i-1];
+            }
         }
         return ans;
     }
